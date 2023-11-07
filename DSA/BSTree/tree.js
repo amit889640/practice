@@ -119,20 +119,46 @@ class BSTree {
         return nodes;
     }
 
+    bstToMinHeap() {
+        // First get inorder of the tree and then convert it into the preorder it will become min heap.
+        let inOrderValues = this.dFSInOrder(this.root);
+        let nodes = [];
+        let i = -1;
+        function traverse(node) {
+            node.value = inOrderValues[++i];
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+        }
+        traverse(this.root);
+    }
+
     display() {
         console.log(this.root);
     }
 }
 
 let bst = new BSTree()
-bst.insert(10);
+// bst.insert(10);
+// bst.insert(6);
+// bst.insert(15);
+// bst.insert(3);
+// bst.insert(8);
+// bst.insert(20);
+
+
+
+bst.insert(4);
+bst.insert(2);
 bst.insert(6);
-bst.insert(15);
+bst.insert(1);
 bst.insert(3);
-bst.insert(8);
-bst.insert(20);
-console.log(`BFS:- ${bst.bFS()}`);
-console.log(`DFSPreOrder:- ${bst.dFSPreOrder()}`);
+bst.insert(5);
+bst.insert(7);
+bst.bstToMinHeap();
+bst.display()
+
+
+// console.log(`BFS:- ${bst.bFS()}`);
+// console.log(`DFSPreOrder:- ${bst.dFSPreOrder()}`);
 console.log(`DFSInOrder:- ${bst.dFSInOrder()}`);
-console.log(`DFSPostOrder:- ${bst.dFSPostOrder()}`);
-// bst.display();
+// console.log(`DFSPostOrder:- ${bst.dFSPostOrder()}`);
