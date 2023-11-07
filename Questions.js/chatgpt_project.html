@@ -1,0 +1,108 @@
+
+
+
+
+
+
+const API_ENDPOINT =
+  "https://api.openai.com/v1/images/generations";
+
+JS - 
+// Define API endpoint and access token
+
+const API_ENDPOINT =
+  "https://api.openai.com/v1/images/generations";
+// const ACCESS_TOKEN = "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";
+// const ACCESS_TOKEN = "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";
+// const ACCESS_TOKEN = "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";
+const ACCESS_TOKEN = "";
+
+// Define DOM elements
+const topicInput = document.querySelector("#topic-input");
+const generateButton = document.querySelector("#generate-button");
+const imgContainer = document.querySelector("#img-container");
+
+
+// Define event listener for the generate button
+generateButton.addEventListener("click", async () => {
+  const input = topicInput.value;
+  showSpinner();
+  const data = await getImages(input);
+  displayFirstImg(data);
+  hideSpinner();
+});
+
+function showSpinner() {
+  document.getElementById("loader").style.display = "block";
+  document.getElementById("container").style.display = "none";
+}
+
+function hideSpinner() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("container").style.display = "block";
+}
+// Define function to make API call and get quotes
+async function getImages(input) {
+  // Construct API request body
+  const requestBody = {
+    prompt: `${input}`,
+    n: 2,
+    size: "1024x1024"
+  };
+
+  // Construct API request options
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+    },
+    body: JSON.stringify(requestBody),
+  };
+
+  let res;
+  // Make API call and parse response
+  try {
+    const response = await fetch(API_ENDPOINT, requestOptions);
+    res = await response.json();
+    if(!res.data) {
+      throw new Error('Data is not returned!')
+    }
+  }catch(err) {
+    console.log(err);
+  }
+  return res;
+}
+
+// Define function to display quotes on the page
+function displayFirstImg({data}) {
+    imgContainer.innerHTML = "";
+    const imgUrl = data[0];
+    const img = document.createElement("img");
+    img.src = imgUrl.url;
+    img.width = "1024"
+    img.height = "1024"
+    imgContainer.appendChild(img);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT GPT</title>
+    <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="loader"></div>
+    <div id="container">
+        <h2>Image Generator</h2>
+        <textarea id="topic-input" rows="4" cols="50"></textarea>
+        <button style="display: block;" id="generate-button">Generate</button>
+        <div id="img-container" style="scale: 0.5;"></div>
+    </div>
+    <script src="./image_gen.js"></script>
+</body>
+</html>
+
+Write something here
