@@ -137,7 +137,7 @@ class BSTree {
     }
 }
 
-let bst = new BSTree()
+let bst = new BSTree();
 // bst.insert(10);
 // bst.insert(6);
 // bst.insert(15);
