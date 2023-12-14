@@ -1,81 +1,54 @@
+// 1:57
 class Node {
-    constructor(val) {
-        this.value = val;
-        this.next = null;
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
     }
 }
 
-class LinkedList {
+class Tree {
     constructor() {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.root = null;
     }
 
-    push(val) {
-        let newNode = new Node(val);
-        if (!this.head) {
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+    insert(value) {
+        let newNode = new Node(value);
+        if (!this.root) {
+            this.root = newNode;
+            return;
         }
-        return this;
-    }
+        let currentNode = this.root;
+        while (true) {
 
-    pop() {
-        if (this.length == 1) {
-            this.head = null;
-            this.tail = null;
+            if (value < currentNode.value) {
+                if (!currentNode.left) {
+                    currentNode.left = newNode;
+                    break;
+                } else {
+                    currentNode = currentNode.left;
+                    continue;
+                }
+            }
+
+            if (value > currentNode.value) {
+                if (!currentNode.right) {
+                    currentNode.right = newNode;
+                    break;
+                } else {
+                    currentNode = currentNode.right;
+                    continue;
+                }
+            }
+            break;
         }
 
-        let current = this.head;
-        let prev = null;
-        while (current.next.next) {
-            prev = current;
-            current = current.next;
-        }
-
-        prev.next.next = null;
-        this.tail = prev;
-        console.log(prev);
-        this.length--;
-    }
-
-
-
-    display() {
-        let current = this.head;
-        while (current) {
-            console.log(current.value);
-            current = current.next;
-        }
-    }
-
-    reverse() {
-        let prev = null;
-        let current = this.head;
-        let next = null;
-        while (current) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        this.head = prev;
     }
 }
 
-let ll = new LinkedList();
+let t = new Tree();
 
-ll.push(2);
-ll.push(3);
-ll.push(4);
-ll.push(6);
-// ll.pop();
-ll.reverse();
-ll.display();
-
-
-
+t.insert(4);
+t.insert(2);
+t.insert(5);
+console.log(t);
