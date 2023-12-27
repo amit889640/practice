@@ -135,6 +135,37 @@ class BSTree {
     display() {
         console.log(this.root);
     }
+
+    insertLevelOrderWithRecursion(arr, i) {
+        // base case for recursion
+        let root = null;
+        if (i < arr.length) {
+            root = new Node(arr[i]);
+            root.left = this.insertLevelOrder(arr, 2 * i + 1);
+            root.right = this.insertLevelOrder(arr, 2 * i + 2);
+        }
+        return root;
+    }
+
+    insertLevelOrder(arr) {
+        let i = 1;
+        let rootNode = new Node(arr[0]);
+        let queue = [rootNode];
+        while (i < arr.length) {
+            let currNode = queue.shift();
+            if (i < arr.length) {
+                let leftNode = new Node(arr[i++]);
+                currNode.left = leftNode;
+                queue.push(leftNode);
+            }
+            if (i < arr.length) {
+                let rightNode = new Node(arr[i++]);
+                currNode.right = rightNode;
+                queue.push(rightNode)
+            }
+        }
+        return rootNode;
+    }
 }
 
 let bst = new BSTree();
