@@ -1,0 +1,16 @@
+.main-card {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    width: max-content;
+    padding: 4%;
+    margin: 1%;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+    flex-wrap: wrap;
+}

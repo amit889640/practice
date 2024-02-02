@@ -1,0 +1,10 @@
+.form-div {
+    width: 100%;
+    display: flex;
+    padding: 4px;
+    gap: 52px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2%;
+
+}
