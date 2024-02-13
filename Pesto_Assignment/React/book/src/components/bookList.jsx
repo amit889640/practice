@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import BookDetail from './bookDetail'
 
 export default function BookList({ bookList }) {
-    // const bookList = bookList;
+
+    // useEffect(() => {
+    //     console.log('useEffect list');
+    //     console.log(bookList);
+    // }, [bookList])
     return (
         <>
+            {/* <BookDetail></BookDetail> */}
             {bookList.map((book) =>
                 <div>
                     <h3>Book Name : {book.title}</h3>
