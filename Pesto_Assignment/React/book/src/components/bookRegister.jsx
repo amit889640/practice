@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 
 export default memo(function BookRegister({ handleAddBook }) {
-    const [detail, setDetail] = useState({});
+    const [detail, setDetail] = useState({ title: 'book 3', author: 'amit', year: 2021 });
     const handleSubmit = () => {
         handleAddBook(detail);
     }

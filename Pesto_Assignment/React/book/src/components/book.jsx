@@ -1,33 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import BookList from './bookList';
 import BookRegister from './bookRegister';
+import { apiBook } from '../utils/bookDataLoader';
+import { useFilterBooks } from '../hooks/useFilterBook';
+import BookFilter from './bookFilter';
 
 export default function Book(props) {
 
-    const [bookList, setBookList] = useState(
-        [
-            { title: 'Book 1', author: 'Author 1', year: 2020 },
-            { title: 'Book 2', author: 'Author 2', year: 2018 },
-        ])
-
+    const [bookList, setBookList] = useState([]);
+    const [filterBookList, setFilterBookList] = useState([]);
+    const [filterBook] = useFilterBooks();
 
     const handleAddBook = (bookDetail) => {
+        console.log("add book");
         setBookList([...bookList, bookDetail])
+        setFilterBookList([...filterBookList, bookDetail])
     }
 
     const handleDeleteBook = (index) => {
-        bookList.splice(index, 1);
-        setBookList([...bookList])
+        console.log("delete book");
+        filterBookList.splice(index, 1);
+        setBookList([...filterBookList])
+    }
+    const getBooks = async () => {
+        const book = await apiBook();
+        setFilterBookList([...book])
+        setBookList([...book])
     }
 
-    // useEffect(() => {
-    //     console.log(bookList);
-    // }, [bookList])
+    const getBookByName = (name) => {
+        console.log('get book by name');
+        let book;
+        if (name) {
+            book = filterBook(filterBookList, name);
+        } else {
+            book = bookList;
+        }
+        setFilterBookList([...book])
+    }
+
+    useEffect(() => {
+        getBooks();
+    }, [])
+
+    useEffect(() => {
+    }, [filterBookList])
 
     return (
         <>
             <BookRegister handleAddBook={handleAddBook}></BookRegister>
-            <BookList handleDeleteBook={handleDeleteBook} bookList={bookList}></BookList>
+            <BookFilter getBookByName={getBookByName}></BookFilter>
+            <BookList handleDeleteBook={handleDeleteBook} bookList={filterBookList}></BookList>
         </>
     )
 }
