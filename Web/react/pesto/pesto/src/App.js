@@ -10,6 +10,7 @@ import HookDemo from './components/HookDemo/HookDemo';
 import AgeInc from './components/CustomHook/AgeInc';
 import TestDemo from './components/TestDemo/TestDemo';
 import Counter from './components/Counter/Counter';
+import Registration from './components/RegistrationForm/Registration';
 
 
 
@@ -57,8 +58,9 @@ function App() {
       {/* <ThemeChanger /> */}
       {/* <HookDemo /> */}
       {/* <AgeInc /> */}
-      <TestDemo />
-      <Counter />
+      {/* <TestDemo /> */}
+      {/* <Counter /> */}
+      <Registration />
     </div>
   );
 }

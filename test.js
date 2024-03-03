@@ -1,4 +1,10 @@
-a = [1, 2, 3];
-a[4] = 5;
-a["name"] = "Amit";
-console.log(a["name"]);
+const event = require('events');
+
+const triggerEvent = new event.EventEmitter();
+
+triggerEvent.on('trigger', () => {
+    console.log('Event triggered has been emitted');
+})
+
+
+triggerEvent.emit('trigger')

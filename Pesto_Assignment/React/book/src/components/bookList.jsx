@@ -4,6 +4,7 @@ import { useSortBook } from '../hooks/useSortBook';
 
 
 export default memo(function BookList({ bookList, handleDeleteBook }) {
+    // stuck here in sorting button not working
     console.log(bookList);
     const [bookListItem, setBookListItem] = useState(bookList)
     const Theme = useContext(ThemeContext);

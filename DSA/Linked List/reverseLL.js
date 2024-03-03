@@ -25,43 +25,39 @@ class SinglyLinkedList {
         return this;
     }
 
-    displayList() {
-        let current = this.head;
+    displayList(head) {
+        let current = head;
         while (current) {
+
             console.log(current.val);
             current = current.next;
         }
     }
 
-    reverse() {
-        let cn = this.head.next;
-        let nn = new Node(this.head.val);
-        while (cn && cn.val != null) {
-            if (!cn.val) continue;
-            let tn = new Node(cn.val);
-            tn.next = nn;
-            nn = tn;
-            cn = cn.next;
+    reverse(head) {
+        let curr = head;
+        let next = null;
+        let prev = null;
+        while (curr !== null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
-        return nn;
+        head = prev;
+        return head;
     }
 }
 
 
 let sl1 = new SinglyLinkedList();
-let sl2 = new SinglyLinkedList();
 sl1.push(1);
+sl1.push(2);
 sl1.push(3);
-sl1.push(5);
-sl1.push(7);
-sl2.push(2);
-sl2.push(4);
-sl2.push(6);
-sl2.push(8);
+sl1.push(4);
 
-
-// let head = sl1.reverse();
-// console.log(sl1.displayList());
-// console.log(sl2.displayList());
+console.log(sl1.displayList(sl1.head));
+let head = sl1.reverse(sl1.head);
+console.log(head);
 
 
