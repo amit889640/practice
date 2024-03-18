@@ -3,7 +3,6 @@ var subsets = function (nums) {
     function ss(nums, i, op, ans) {
         if (i >= nums.length - 1) {
             ans.push(op);
-            op = new Array();
             return;
         }
         ss(nums, i + 1, op, ans);
