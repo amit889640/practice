@@ -1,0 +1,26 @@
+
+-- rank with same ranking number skipping some rank
+select "price", rank() over( order by "price" desc) as "Rank" from "Product"
+-- rank with same ranking number without skipping some rank
+select "price", dense_rank() over( order by "price" desc) as "Rank" from "Product"
+-- rank without same rank
+select "price", row_number() over( order by "price" desc) as "Rank" from "Product"
+
+-- rank with same ranking number without skipping some rank and by category wise
+select "category", "price", row_number() over( partition by "category" order by "price" desc) as "Rank" from "Product"
+
+
+--rank 
+select * from  (select "category", "price", row_number() over( order by "price" desc) as "Rank" from "Product") as "Rn" where "Rank"=2
+
+--second largest salary
+select max("price") from "Product" where "price" not in ( select max("price") from "Product") 
+
+-- duplicat value
+select "category", count(*) from "Product" group by "category" having count(*) = 2
+
+-- name start with second letter L
+select * where "Name" like '_L%'
+
+
+

@@ -1,91 +1,41 @@
-class Show {
-    constructor(startTime, movieName, screen) {
-        this.startTime = startTime;
-        this.movieName = movieName;
-        this.movieTime = ''
-        this.screen = screen;
-    }
+// let getData1 = new Promise((res, rej) => {
+//     setTimeout(() => {
+//         res('1 is resolved');
+//     }, 1000)
+// })
 
-    setSeatOccupied(seatNo) {
-        let seat = this.screen.seats.flat(Infinity);
-        let seatToBeOccupy = seat.find(s => s.seatNo == seatNo);
-        console.log(seatToBeOccupy);
-        seatToBeOccupy.doFillSeat();
-    }
+// let getData2 = new Promise((res, rej) => {
+//     setTimeout(() => {
+//         res('2 is resolved');
+//     }, 2000)
+// })
 
-    displaySeat() {
-        // console.log(this.screen.seats);
-        let tempRow = '';
-        for (let i = 0; i < this.screen.seats.length; i++) {
-            for (let j = 0; j < this.screen.seats[i].length; j++) {
-                tempRow += `${this.screen.seats[i][j].seatNo} - Occupied ${this.screen.seats[i][j].isOccupied}       `;
-            }
-            tempRow += '\n';
-        }
-        console.log(tempRow);
-    }
-}
-
-class Screen {
-    constructor(id, row, column) {
-        this.id = id;
-        this.noOfSeat = row * column;
-        this.seats = [];
-        this.generateSeat(row, column);
-    }
-
-    generateSeat(row, column) {
-        for (let i = 65; i <= 64 + row; i++) {
-            let tempColumn = [];
-            for (let j = 1; j <= column; j++) {
-                tempColumn.push(new Seat(`${String.fromCharCode(i)}-${j}`));
-            }
-            this.seats.push(tempColumn);
-        }
-    }
-}
-
-class Theatre {
-    constructor(id, name, screen) {
-        this.id = id;
-        this.name = name;
-        this.screen = screen;
-    }
-}
-
-class Seat {
-    constructor(seatNo) {
-        this.isOccupied = false;
-        this.seatNo = seatNo;
-    }
-
-    getSeatStatus() {
-        return this
-    }
-
-    doFillSeat() {
-        this.isOccupied = true;
-    }
-
-    doVacantSeat() {
-        this.isOccupied = false;
-    }
-}
-
-// Creating the theatre
-
-let T1S1 = new Screen('T1S1', 4, 4);
-let T1S2 = new Screen('T1S1', 6, 4);
-let T1 = new Theatre(1, 'Ip-Sigra', [T1S1, T1S2]);
-
-let Sh1 = new Show('12:00', 'Shitaan', T1S1);
-Sh1.displaySeat();
-Sh1.setSeatOccupied('A-2');
-Sh1.displaySeat();
+// let getData3 = new Promise((res, rej) => {
+//     setTimeout(() => {
+//         rej('3 is rejected');
+//     }, 3000)
+// })
 
 
+// async function showData() {
+//     let data1 = await getData1;
+//     let data2 = await getData2;
+//     // let data3 = await getData3;
+//     // console.log(data1);
+//     // console.log(data2);
 
-// Booking
+//     let p = await Promise.allSettled([data1, data2,
+//         // data3
+//     ]);
+//     console.log(p);
 
+//     // try {
+//     // } catch (error) {
+//     //     console.log('error in 3');
+//     // }
+// }
 
+// showData();
+// Promise.all([Promise.resolve(1), Promise.resolve(2)]).then((r) => console.log(r))
 
+const express = require('express')
