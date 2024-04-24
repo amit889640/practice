@@ -1,0 +1,49 @@
+// function countVowel(str) {
+//     const v = ['a', 'e', 'i', 'o', 'u'];
+//     str = str.toLowerCase()
+//     let count = 0;
+//     for (let i = 0; i < str.length; i++) {
+//         let c = str[i]
+//         if (v.includes(c)) {
+//             count++
+//         }
+//     }
+//     return count;
+
+// }
+// console.log(countVowel('AMit kumar'))
+
+
+// mapstateToprops
+// connect()
+
+// createStore
+
+// useDispatch()
+// useSelector((state) => state)
+
+// createStore(reducerFunction);
+// const reducerFunction = ()=>{
+// }
+// thunk
+
+
+// display(name:string,age:number) : string {
+//     return `${name}`
+// }
+
+// EVENT HANDLER TYPE
+
+// props: {
+//     number,
+//     handleKeyPress(e,value){}
+//     }
+
+
+//  type prop ={
+//     number:number,
+//     handleKeyPress
+//  }   
+
+// A - B
+//     C

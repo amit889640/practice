@@ -1,0 +1,150 @@
+Feature of 
+MongoDBSupports Indexing
+Designed to scale
+Rich with Features
+High Performance
+Load Balancing
+Supports sharding
+
+// Join between the collection
+db.customer.aggregate([{
+    $lookup: {
+        from: "order",
+        localField: "_id",
+        foreignField: "customer_id",
+        as: 'orderDetail'
+    }
+}])
+
+
+// Aggregate sequence of operation, one op send the result to next operation in the pipeline
+// match operator
+db.customer.aggregate([{ $match: { name: 'amit' } }])
+
+// group
+db.customer.aggregate([{ $group: { _id: "$age", names: { $push: "$name" } } }])
+
+// if you want to add whole document in the group result then use this operator "$$ROOT"
+db.customer.aggregate([{ $group: { _id: "$age", docs: { $push: "$$ROOT" } } }])
+
+// Count male teacher age wise
+
+db.teacher.aggregate([{ $match: { gender: 'male' } }, { $group: { _id: "$age", "AgeWiseTeacher": { $sum: 1 } } }, { $sort: { AgeWiseTeacher: -1 } }])
+
+// unwind
+db.person.aggregate([{ $unwind: "cars" }])
+
+// $search 
+// this will search in the column which have indexing with text
+db.studend.createIndex({ bio: "text" })
+db.studend.find({ $search: "youtube" })
+
+// find by regex
+db.stu.find({ name: { $regex: /^A/ } })
+
+What is a Replica Set in MongoDB?
+To keep identical copies of your data on multiple servers, we use replication. It is recommended for all production deployments. Use replication to keep your application running and your data safe, even if something happens to one or more of your servers.
+
+Such replication can be created by a replica set with MongoDB. A replica set is a group of servers with one primary, the server taking writes, and multiple secondaries, servers that keep copies of the primary’s data. If the primary crashes, the secondaries can elect a new primary from amongst themselves.
+
+/*
+creating replication
+create 3 folder
+db1
+db2
+db3
+
+To create the replica
+sudo mongod --port 27018 --dbpath /var/lib/mongo/db1 --replSet rs0
+sudo mongod --port 27019 --dbpath /var/lib/mongo/db2 --replSet rs0
+sudo mongod --port 27020 --dbpath /var/lib/mongo/db3 --replSet rs0
+
+to run the mongo on some particular port
+mongo ---port 27018 
+now mongo will run 27018 port
+
+rs is replicata set function 
+
+rs.initiate({
+    _id:"rs0",
+    members:[
+        {_id:0,host:"host1:27018"},
+        {_id:1,host:"host1:27019"},
+        {_id:2,host:"host1:27020"},
+    ]
+})
+
+to check the status
+rs.status 
+
+now db1 will be primary
+we have to make the other 2 db open for read by using cmd
+-use admin
+db.getMongo().setSlaveOk()
+or
+db.getMongo().setSecondaryOk()
+show dbs
+*/
+
+/*
+How to create shard
+sh.shardCollection("database_name"."collection_name",{"<sharding_key>":1})
+*/
+
+// capped collection
+// you have to create the new collection to make them capped collection
+db.createCollection('order_logs', { capped: true, max: 4, size: 10 })
+
+
+// security
+db.createUser({ user: 'name', pwd: 'password', roles: ["readWrite", "read"] })
+db.getUsers()
+db.dropUser('name', { roles: [] })
+
+$facet
+Combines multiple aggregation pipelines.
+const res = await Model.aggregate().facet({
+  books: [{ groupBy: '$author' }],
+  price: [{ $bucketAuto: { groupBy: '$price', buckets: 2 } }]
+});
+
+// Output: { books: [...], price: [{...}, {...}] }
+
+
+Middleware
+mainSchema.pre('save', function(next) {
+  console.log('Middleware on docs');
+  next();
+});
+
+
+loop in mongoDb
+db.getCollection('EmployeeDetail').find({}).forEach(function (record) {
+  print("Name: " + record.Name)
+});
+
+Rename field
+db.getCollection().update({},{$rename:{$mobile:'phone'}})
+
+update field
+db.getCollection().update({Name:'A'},{$set: {Name:'Amit kumar'}},{multi:true})
+
+Query in Array
+db.getCollection().find({
+    "Department.Tester":"Supriya"
+})
+
+// field exists or not
+db.getCollection('EmployeeDetail').find({
+  "Age": {
+    $exists: false
+  }
+})
+
+
+update and increament
+db.bar.update( {user_id : 123456 , "items.item_name" : "my_item_two" } , 
+                {$inc : {"items.$.price" : 1} } , 
+                false , 
+                true);
+

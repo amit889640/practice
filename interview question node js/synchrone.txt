@@ -1,0 +1,78 @@
+// let userList = [
+//     { FistName: "John", lname: "Doe", age: 25 },
+//     { FistName: "Tom", lname: "Cruise", age: 28 },
+//     { FistName: "jenifer", lname: "candy", age: 26 },
+//     { FistName: "bob", lname: "alice", age: 28 }
+// ]
+
+// let group = {};
+
+// userList.forEach((user) => {
+//     if (group[user.age]) {
+//         group[user.age].push(user.FistName);
+//     } else {
+//         group[user.age] = [user.FistName];
+//     }
+// })
+
+// console.log(group);
+
+// let obj1 = {
+//     name:'amit'
+// }
+
+// let obj2 = obj1 //shallow
+
+// let obj3 = JSON.parse(JSON.stringify(obj1)) //deep
+
+// temporal dead zone
+
+// let obj = {
+//     name: 'amit'
+// }
+
+// let obj2 = {
+//     name: 'sumit'
+// }
+
+// function display() {
+//     console.log(this.name);
+// }
+
+// console.log(display.call(obj2));
+// console.log(display.call(obj));
+
+
+// (function obj() {
+//     console.log(this.__proto__);
+// })()
+
+const fn = () => {
+    console.log(this);
+}
+
+
+fn()
+
+// all timer function
+// all pending call backs
+// polling
+
+
+// Messeging queue like kafka or rabbit mq
+// Broker ms api call with retry function for 5;
+
+
+// db.user.aggregate([
+//     $lookup:{
+//         from:'collectionName',
+//         localFeild:'id',
+//         foreignFeild:'',
+//         as:''
+//     }
+// ])
+
+// db.user.find({}).skip().limit();
+
+// bst
+

@@ -1,0 +1,45 @@
+postgres
+how many type of relation in postgres
+
+react
+dom manipulation
+useCallback
+usememo
+RECENT ADDED HOOK
+lazy loading
+react lifecycle methods
+React concepts - default props, react fiber and virtual DOM
+1.What are the limitations of React?
+Development Speed
+JSX Complexity
+Problems With SEO
+
+
+2. How different is React’s ES6 syntax when compared to ES5?
+
+3. Name the types of API functions in Node.js.
+4. What are “streams” in Node.js? Explain the different types of streams present in Node.js.
+5. While creating Schema in MongoDB what are the points need to be taken in consideration
+
+What is closure
+Closure in JavaScript is a form of lexical scoping used to preserve variables from the outer scope of a function in the inner scope of a function
+
+find second max number from araay
+
+nodejs
+eventloop
+middleware
+custom middle ware
+generatore function
+
+mongo graph 
+type of graph
+
+
+// (function (x) {
+//     return (function (y) {
+//         console.log(x);
+//     })(2)
+// })(1)
+
+console.log(1 + "2" + "2");

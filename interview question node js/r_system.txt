@@ -1,0 +1,28 @@
+// const [a, b] = [1, 2]
+// const obj1 = {
+//     name: 'Amit'
+// }
+
+// // reference
+// // refer the mem l
+// const obj2 = obj1
+
+// // new mm location
+// const obj3 = JSON.parse(JSON.stringify(obj1))
+
+// method
+// // shallow copy
+// const obj4 = { ...obj1 }
+
+
+// let n = [1, 2, 4, 33, 11];
+// console.log(n.slice(1,4));
+
+// where date between now() and date::''
+
+// date function in mysql
+
+//  select name,id from  (select name,id dense_rank() as rank over(order by marks desc) from student) as marks_rank where row_number=5
+
+
+
