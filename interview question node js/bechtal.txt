@@ -1,0 +1,104 @@
+// function outer() {
+//     let a = 1;
+//     function inner() {
+//         let b = 2;
+//         console.log(a);
+//     }
+//     console.log(b);
+// }
+
+// function counter() {
+//     let a = 1;
+//     function inner() {
+//         a = a + 1;
+//         return a;
+//     }
+// }
+
+
+// console.log(counter()());
+// console.log(counter()());
+// console.log(counter()());
+
+
+// var a=2;
+// function abc(){
+// a=1;
+// }
+// abc();
+// console.log(a);
+
+
+// let amit = {
+//     name: 'amit',
+// }
+
+// let sumit = {
+//     name: 'sumit'
+// }
+
+// function display(lastname) {
+//     console.log(`Name : ${this.name} lastname: ${lastname}`);
+// }
+
+// display.call(amit)
+// display.call(sumit)
+
+//display.apply(sumit, ['kumar'])
+
+
+// const displayName  = display.bind(amit,'sharma')
+// displayName()
+
+
+
+
+
+// function fibo(n) {
+//     let a = 0;
+//     let b = 1;
+//     let c = 1;
+
+//     for (let i = 0; i < n; i++) {
+//         console.log(c);
+//         c = a + b;
+//         a = b;
+//         b = c;
+//     }
+// }
+
+// fibo(6)
+
+let arr = [1, 2, 3, [5, 6, [6, 4, 2]], 8]
+function flat(arr) {
+    let temp = []
+    if (arr.length == 0) {
+        return temp;
+    }
+    if (Array.isArray(arr[0])) {
+        temp = temp.concat(flat(arr[0]));
+    } else {
+        temp.push(arr[0])
+    }
+    temp = temp.concat(flat(arr.slice(1)));
+    return temp;
+}
+
+console.log(flat(arr))
+
+
+
+let amit = {
+    name: 'amit',
+}
+
+let sumit = {
+    name: 'sumit'
+}
+
+function display(lastname) {
+    console.log(`Name : ${this.name} lastname: ${lastname}`);
+}
+
+const displayName  = display.bind(amit,'sharma')
+displayName()
