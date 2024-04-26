@@ -179,9 +179,30 @@ settimeout async funciton goes to event handler.
 
 // demo();
 
+// clearTimeout(timer);
+// clearInterval(timer);
 
-clearTimeout(timer);
-clearInterval(timer);
+// Curring:- It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence.
+
+// to add function in array
+// Array.prototype.mul = function (fun) {
+//     let newArr = []
+//     for (e of this) {
+//         newArr.push(fun(e));
+//     }
+//     return newArr;
+// }
+
+
+
+// let arr = [1, 2, 3, 4, 5]
+// let newAr = arr.mul((e) => {
+//     return e * 2;
+// });
+// console.log(newAr)
+
+
+
 
 
 
