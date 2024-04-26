@@ -1,0 +1,50 @@
+create timer function
+create todo app
+mongo update collection
+create redux todo app
+
+
+function mul(m) {
+    return (n) => {
+        if (!n) {
+            return m;
+        } else {
+            return mul(m * n)
+        }
+    }
+}
+
+console.log(mul(2)(3)(4)());
+
+
+// let a1 = [2, 4, 5]
+// // let a2 = [2, 4, 6]
+// // let a = [...new Set([...a1, ...a2])]
+// // console.log(a);
+
+// Array.prototype.mul = (e) => {
+//     // console.log(this);
+//     e()
+//     console.log(e);
+//     // return 2 * e;
+// }
+
+
+// a1.mul((e) => {
+//     return e;
+// })
+
+// function fact(n) {
+//     if (n == 0) {
+//         return 1;
+//     }
+//     return n * fact(n - 1);
+// }
+
+// console.log(fact(5));
+
+// function count() {
+//     let fact =
+// }
+
+It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence. 

@@ -1,0 +1,72 @@
+// const b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// for (let i = 0; i < 10; i++) {
+//     setTimeout(() => console.log(b[i]), 1000);
+// }
+
+// for (var i = 0; i < 10; i++) {
+//     setTimeout(() => console.log(b[i]), 1000);
+// }
+
+// arr = [2, 3, 4, 5, 7]
+
+// function rotate(arr) {
+//     let count = 1;
+//     for (let i = 0; i < arr.length; i++) {
+//         if (count <= 3) {
+//             let t = arr.pop();
+//             arr.unshift(t);
+//             console.log(arr);
+//             count++;
+//         } else {
+//             break;
+//         }
+//     }
+//     return arr;
+// }
+
+// console.log(rotate(arr))
+
+// weak maping
+
+
+
+Router.post('/api/save',auth,(req,res,next)=>{
+    const {name,age,mobile}=req.body;
+    // validation
+    // controller
+    // service
+    // repo
+    next(error)
+    res.status(201).send({message:success})
+})
+
+// multer nodemodule
+
+// try {
+    
+// } catch (error) {
+    
+// }
+
+// app.use((error,req,res,next)=>{
+//     res.status(501).send({message:"failed",error:error})
+// })
+
+// process.on('uncaougthException',(error)=>{
+
+// })
+
+import express from 'express';
+
+const app = express();
+const router=express.router()
+app.listen(3000,()=>{
+    console.log('====================================');
+    console.log('Server stared on 3000' );
+    console.log('====================================');
+})
+
+app.use(router)
+router.post
+router.get

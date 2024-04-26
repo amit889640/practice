@@ -180,6 +180,16 @@ settimeout async funciton goes to event handler.
 // demo();
 
 
+clearTimeout(timer);
+clearInterval(timer);
+
+
+
+
+
+
+
+
 
 // synchrone
 
@@ -269,3 +279,6 @@ settimeout async funciton goes to event handler.
 // Check balanced parenthesis
 // Describe JavaScript closures and how to implement them
 // Closure in JavaScript is a form of lexical scoping used to preserve variables from the outer scope of a function in the inner scope of a function
+
+
+
