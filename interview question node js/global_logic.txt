@@ -1,3 +1,4 @@
+Only react not able to perform well redux
 // function countVowel(str) {
 //     const v = ['a', 'e', 'i', 'o', 'u'];
 //     str = str.toLowerCase()

@@ -102,3 +102,7 @@ function display(lastname) {
 
 const displayName  = display.bind(amit,'sharma')
 displayName()
+
+
+not selected not able to perform well
+weak in js deep concept like closure.

@@ -131,7 +131,7 @@ const { Stream } = require('stream');
 // Stream
 // All streams are instances of EventEmitter . They emit events that can be used to read and write data.
 
-    Streams are essentially a sequence of data that is processed sequentially, allowing developers to read and process data piece by piece or in chunks, instead of reading all the data into memory at once. There are four types of Node streams: Readable streams, Writable streams, Duplex streams, and Transform streams.
+Streams are essentially a sequence of data that is processed sequentially, allowing developers to read and process data piece by piece or in chunks, instead of reading all the data into memory at once. There are four types of Node streams: Readable streams, Writable streams, Duplex streams, and Transform streams.
 
 // write stream
 // const file = fs.createWriteStream('./big.file');
