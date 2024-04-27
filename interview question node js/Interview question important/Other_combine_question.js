@@ -85,3 +85,19 @@
 // Asked to explain design patterns
 // Rest API interview questions mandatory
 // Check balanced parenthesis
+
+
+// nxm matrix island problem, spring security
+// What are different types of Garbage collector
+// How to use Feign Client
+// There is a mxn matrix with 1's and 0's
+// What is SOLID principles?
+// explain with code? 2
+// The Twelve-Factor App principles
+// How do you prevent SQL Injection
+// Calculate height of BST using recursion
+// write a recursive function for calculating height of BST
+// Diffence between class and functional component
+// design pattern 2 with code any 2
+// question on stream
+// Mongo db commands
