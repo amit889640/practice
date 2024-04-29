@@ -78,3 +78,30 @@
 
 // Status
 // selected for 1 and 2 round clear
+
+
+
+
+
+
+
+
+
+// google it about the nemt service in noida
+// Atleast two player in this line in india
+// refernce also
+// location also
+// work flow diagram : if driver is not reaching : make flow of automatic
+// calculate path miles and time then work on the system
+// for emergency system what are the challenges , moving from nemt to mt perfect staff
+// question to ask for emt
+// how to write multiple table replication whiile write
+// voting in mongo writing multipel master
+// mongo replication voting
+// how many server of mongo is needed how to calculate master replication
+// how to get autu errro
+// write the script erro rin 10 min 10 error
+// crone last day of the month 31 30 consider
+// table tennis world cup
+// footvball
+// lama 2

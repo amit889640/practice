@@ -1,0 +1,50 @@
+// babad
+
+// function checkPalin(str) {
+//     let maxStr = [];
+//     for (let i = parseInt(str.length / 2); i <= str.length; i++) {
+//         if (str[i - 1] == str[i + 1]) {
+//             maxStr.push(str.slice(i - 1, i + 2));
+//         }
+//     }
+
+//     let maxL = 0;
+//     for (let i = 0; i < maxStr.length; i++) {
+//         if (maxStr[i].length > maxL) {
+//             maxL = maxStr[i].length;
+//         }
+//     }
+//     console.log(maxStr)
+//     return maxL;
+// }
+
+// console.log(checkPalin('caabaab'))
+
+
+// abcabcbb
+
+function nonRepeatStr(str) {
+    let temp = ''
+    let tempS = [];
+    for (let i = 0; i < str.length; i++) {
+        let ti = temp.indexOf(str[i]);
+        if (ti == -1) {
+            temp = temp + str[i];
+        } else {
+            tempS.push(temp);
+            temp = '' + str[i - 1];
+        }
+    }
+    let finalS = ''
+    tempS.forEach(element => {
+        if (finalS.length < element.length) {
+            finalS = element
+        }
+    });
+    return finalS
+}
+
+
+console.log(nonRepeatStr('aabzbcabcbb'))
+// aabzbcabcbb
+// console.log('abcabcbb'.indexOf('z'))
