@@ -1,0 +1,74 @@
+
+// event bubbling 
+// event propogation
+// const axios = require('axios');
+
+// function delay() {
+//     return new Promise((res, rej) => {
+//         setTimeout(() => {
+//             res('resolved')
+//             console.log('init api search')
+//         }, 3000);
+//     })
+// }
+
+// async function search() {
+//     await delay();
+
+// }
+
+// search();
+
+
+// function sumArr(arr, sum) {
+//     if (!arr.length) {
+//         return sum;
+//     }
+//     let t = arr.pop();
+//     return sumArr(arr, sum + t);
+// }
+
+// console.log(sumArr([1, 2, 3, 4, 5], 0))
+
+
+// async function fetchData() {
+//     let obj = {};
+//     const fetchTodo = await axios.get('https://jsonplaceholder.typicode.com/todos');
+//     // console.log(Object.keys(fetchTodo));
+//     // console.log(fetchTodo.slice(0, 5));
+
+//     for (const todo of fetchTodo.data) {
+//         if (obj[todo.userId]) {
+//             if (todo.completed) {
+//                 obj[todo.userId][completed].push(todo.id)
+//             } else {
+//                 obj[todo.userId][inCompleted].push(todo.id)
+//             }
+//         } else {
+//             obj[todo.userId] = { completed: [], inCompleted: [] }
+//         }
+//     }
+//     console.log(obj);
+// }
+
+// fetchData()
+
+
+
+// const person = {
+//     name: 'Lydia Hallie',
+//     hobbies: ['coding'],
+//   };
+   
+//   function addHobby(hobby, hobbies = person.hobbies) {
+//     hobbies.push(hobby);
+//     return hobbies;
+//   }
+   
+//   addHobby('running', []);
+//   addHobby('dancing');
+//   addHobby('baking', person.hobbies);
+   
+//   console.log(person.hobbies);
+
+// search function
