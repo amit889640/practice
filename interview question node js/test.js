@@ -1,40 +1,22 @@
-// telus
-// const priorityLog = () => {
-//     setTimeout(() => console.log("timeout"), 0);
-//     setImmediate(() => console.log("immediate"));
-//     console.log("I am independent");
-//     process.nextTick(() => console.log("nextTick"));
-// }
-// priorityLog()
+const axios = require('axios')
+async function fetchData() {
+    let obj = {};
+    const fetchTodo = await axios.get('https://jsonplaceholder.typicode.com/todos');
+    console.log(Object.keys(fetchTodo));
+    // console.log(fetchTodo.slice(0, 5));
 
-// I am independent
-// nextTick
-// timeout
-// immediate
+    // for (const todo of fetchTodo.data) {
+    //     if (obj[todo.userId]) {
+    //         if (todo.completed) {
+    //             obj[todo.userId][completed].push(todo.id)
+    //         } else {
+    //             obj[todo.userId][inCompleted].push(todo.id)
+    //         }
+    //     } else {
+    //         obj[todo.userId] = { completed: [], inCompleted: [] }
+    //     }
+    // }
+    // console.log(obj);
+}
 
-
-// pending call()
-// timers function
-// pol
-
-// micro and macro
-
-// function getData1() {
-//     return new Promise((res, rej) => {
-//         setTimeout(() => {
-//             res("data received")
-//         }, 1000);
-//     })
-// }
-
-// async function fetchData() {
-//     const data = await getData();
-// }
-
-// const getdata = async () => {
-//     const data = await getData1();
-//     console.log(data)
-//     console.log("got it");
-// }
-
-// getdata();
+fetchData()
