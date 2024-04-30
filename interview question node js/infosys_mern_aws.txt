@@ -1,0 +1,46 @@
+// what is aws deploy file docker
+// react all the lifecycle hooks
+// 2nd largest in array
+// let p = new Promise
+
+
+let arr = [5, 2, 4, 3, 6, 7];
+let max = arr[0];
+let maxP = 0;
+for (let i = 0; i < arr.length; i++) {
+    if (max < arr[i]) {
+        max = arr[i];
+        maxP = i;
+    }
+}
+
+console.log(`max ${max}`);
+let max2 = 0;
+for (let i = 0; i < arr.length; i++) {
+    if (max2 < arr[i] && maxP != i) {
+        max2 = arr[i];
+    }
+}
+console.log(max2)
+
+
+queueMicrotask(() => {
+    console.log(3)
+    queueMicrotask(() => console.log(4));
+})
+
+Promise.resolve().then(() => console.log(1));
+
+setTimeout(() => console.log(2), 10);
+
+// qmTask(() => {
+//     console.log(3)
+//     qmTask(() => console.log(4));
+// });
+
+console.log(5);
+
+// 5
+// 1
+// 2
+
