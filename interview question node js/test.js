@@ -1,22 +1,32 @@
-const axios = require('axios')
-async function fetchData() {
-    let obj = {};
-    const fetchTodo = await axios.get('https://jsonplaceholder.typicode.com/todos');
-    console.log(Object.keys(fetchTodo));
-    // console.log(fetchTodo.slice(0, 5));
+// const add = (function () {
+//     let counter = 0;
+//     return function () { counter += 1; return counter }
+// });
 
-    // for (const todo of fetchTodo.data) {
-    //     if (obj[todo.userId]) {
-    //         if (todo.completed) {
-    //             obj[todo.userId][completed].push(todo.id)
-    //         } else {
-    //             obj[todo.userId][inCompleted].push(todo.id)
-    //         }
-    //     } else {
-    //         obj[todo.userId] = { completed: [], inCompleted: [] }
-    //     }
-    // }
-    // console.log(obj);
-}
+// console.log(add()())
+// console.log(add()())
+// // console.log(outer())
 
-fetchData()
+
+const outer = (function () {
+    let c = 0;
+    return function () { c += 1; return c }
+})()
+
+
+console.log(outer())
+console.log(outer())
+console.log(outer())
+
+// function counter() {
+//     let a = 1;
+//     function inner() {
+//         a = a + 1;
+//         return a;
+//     }
+// }
+
+
+// console.log(counter()());
+// console.log(counter()());
+// console.log(counter()());
