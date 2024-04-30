@@ -85,10 +85,7 @@ what is stream
 how to change the column datatype
 shalow copy and deep copy
 
-
-
-
-
+what is function and procedure
 */
 
 
