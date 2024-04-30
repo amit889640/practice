@@ -1,36 +1,3 @@
-const arr = [
-    () => {
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res(`pp`);
-            }, 1000);
-        })
-    },
-
-    () => {
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res(`pp2`);
-            }, 2000);
-        })
-    },
-
-    () => {
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res(`pp3`);
-            }, 5000);
-        })
-    }
-]
-
-
-// for (let i = 0; i < arr.length; i++) {
-//     const element = arr[i];
-//     console.log(await element());
-// }
-
-for await (let prms of arr) {
-    await prms();
-    console.log()
-}
+var a = [['ss', 88]];
+a.push(['amit', 21], ['amit', 21, 99]);
+console.log(a);
