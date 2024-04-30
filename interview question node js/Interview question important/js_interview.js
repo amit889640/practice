@@ -201,7 +201,22 @@ settimeout async funciton goes to event handler.
 // });
 // console.log(newAr)
 // Describe JavaScript closures and how to implement them
+
 // Closure in JavaScript is a form of lexical scoping used to preserve variables from the outer scope of a function in the inner scope of a function
+
+/*
+Promises
+ -are objects that represent the eventual outcome of an asynchronous operation.
+ -used to handle asynchronous operations
+ -Three state = pending, fulfilled, or rejected.
+ -Promises, on the other hand, allow for asynchronous code to be written in a more organized fashion
+
+ Callbacks
+ -A callback is a function that is passed as an argument to another function
+ -callbacks are often nested within one another, making them difficult to read and understand.
+ -
+*/
+
 
 
 

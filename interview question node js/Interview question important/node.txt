@@ -145,7 +145,7 @@ Streams are essentially a sequence of data that is processed sequentially, allow
 // src.pipe(res);
 
 /*
-How to provide security to express
+How to provide security to express/nodejs
 1. Use Helmet
 2. Keep Dependencies Updated
 3. Implement Rate Limiting
