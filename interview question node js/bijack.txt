@@ -1,3 +1,8 @@
+not performed well
+question 
+dsa largest palindore
+dsa non repeat string
+
 // babad
 
 // function checkPalin(str) {
