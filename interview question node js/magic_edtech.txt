@@ -1,0 +1,17 @@
+// how to handle the concurrency in the database
+// how to handle the race condition
+// what is higher order component
+
+// let arr = [1, [2, [3, 4, 5], 6], 7, 8, 9, [10], 11]
+// function flat(arr) {
+//     let tempArr = [];
+//     for (let i = 0; i < arr.length; i++) {
+//         if (Array.isArray(arr[i])) {
+//             tempArr = tempArr.concat(flat(arr[i]));
+//         } else {
+//             tempArr.push(arr[i]);
+//         }
+//     }
+//     return tempArr;
+// }
+// console.log(flat(arr));
