@@ -283,3 +283,4 @@ npm install -g autocannon
 GET:- autocannon -c 500 -d 5 http://localhost:8000/getAll // Running 500 connections in 5 seconds
 POST:- autocannon -m POST -H “Content-Type:application/x-www-form-urlencoded” -b “name=swimming&active=true” http://localhost:8000/save  // specify Header(-H) and Body (-b)
 
+
