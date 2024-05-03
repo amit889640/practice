@@ -1,0 +1,52 @@
+// https://www.programiz.com/javascript/online-compiler/
+// I/P: acabkafdfbkadbgfd
+// https://picsum.photos/seed/picsum1/200/300
+// https://nextleap.app/online-compiler/reactjs-programming
+
+dsa 2nd non repeating char in string optimezed way
+
+next and prev button to print the image in the array.
+
+
+
+setImmediate(function () {
+    console.log('setImmediate')
+}, 0)
+
+
+setTimeout(function () {
+    console.log('setTimeout')
+}, 0)
+
+
+const i = setInterval(function () {
+    console.log('setInterval')
+}, 0)
+
+
+process.nextTick(() => {
+    console.log('nexttick')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+setTimeout(() => {
+    clearInterval(i)
+}, 10);
+
+
+
+
