@@ -54,5 +54,16 @@ Serializable	    Not possible	Not possible	        Not possible	Not possible
 Ref:- https://www.postgresql.org/docs/current/transaction-iso.html
 
 
+In postgres optimization
+-Prepared Statement: pre-gernerated statement for the query which is very frequently executed. But it work for same connection if conn closed you have to create again
+    PREPARE insert_task as INSERT INTO task (name,due_data,is_done) VALUES ($1,$2,$3);
+-Indexing : for optimize scan
+-Partitioning : segmented the data , larger table is converted into multi table based on some hased 
+    CREATE TABLE emp () PARTITION BY RANGE (id) // create table by this way
+    CREATE TABLE id_1_to_id_100 FOR VALUES FROM 1 TO 100 //create partitioned table by this way
+    CREATE TABLE id_1_to_id_100 FOR VALUES FROM 100 TO 300
+    CREATE TABLE id_1_to_id_100 FOR VALUES FROM 300 TO 900
 
-
+-Avoid using complex calculation in index column in where clause
+-Use direct comparisons instead of wrapping the column in function
+-Avoid sorting whole database , should use with limit
