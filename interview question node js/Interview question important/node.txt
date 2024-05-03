@@ -284,3 +284,8 @@ GET:- autocannon -c 500 -d 5 http://localhost:8000/getAll // Running 500 connect
 POST:- autocannon -m POST -H “Content-Type:application/x-www-form-urlencoded” -b “name=swimming&active=true” http://localhost:8000/save  // specify Header(-H) and Body (-b)
 
 
+Callback queue or Task queue have some sort of task inside this queue there is micro task q and macro task q
+micro:- dom manupulation , change in the state , it has higher priority,promise , queueMicrotask(),process.nextTick, Promises, queueMicrotask, MutationObserver
+Micro-tasks include mutation observer callbacks as well as promise callbacks.
+
+macro: macro-task queue has a lower priority like page loading, input, network events, timer events

@@ -1,0 +1,22 @@
+2nd non-repeating
+images to show by next and prev
+why super is called in constructor
+usedefer use layout
+what is memoised function
+useref Important
+debouncing in react where to use this
+microservice design pattern
+orchastrated pattern
+circuit breaker pattern
+idempotant
+put patch
+status code
+
+having where
+transaction
+
+longest non reapting str
+longest palindrom
+
+
+to set the server down what points need to be consider in nodejs

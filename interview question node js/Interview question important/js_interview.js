@@ -214,6 +214,9 @@ Promises
  Callbacks
  -A callback is a function that is passed as an argument to another function
  -callbacks are often nested within one another, making them difficult to read and understand.
+
+ The async keyword transforms a regular JavaScript function into an asynchronous function, causing it to return a Promise. 
+ The await keyword is used inside an async function to pause its execution and wait for a Promise to resolve before continuing.
  -
 */
 

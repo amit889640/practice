@@ -45,7 +45,6 @@ The result of successfully committing a group of transactions is inconsistent wi
 
 To handle this there are 4 isolation level
 
-
 Isolation_Level 	Dirty_Read	    Nonrepeatable_Read      Phantom_Read	Serialization_Anomaly
 Read uncommitted	Allowed,nin PG	Possible	            Possible	Possible
 Read committed	    Not possible	Possible	            Possible	Possible

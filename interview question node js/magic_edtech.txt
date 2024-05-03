@@ -15,3 +15,34 @@
 //     return tempArr;
 // }
 // console.log(flat(arr));
+
+
+
+2nd round 
+react
+what is pure component
+context api and  usecontext and redux
+how to manage multple stores
+portals in react
+what is idempotants in the rest api
+error boundaries in react
+How to handle error
+how to handle api integration
+performance hooks
+which hooks is best for api calling
+advantages of redux over usecontext and context api
+lazy loading advantages with eg.
+
+nodejs
+architecture 
+child process
+jest
+mongo connection
+promise and async await
+
+
+
+
+
+
+
