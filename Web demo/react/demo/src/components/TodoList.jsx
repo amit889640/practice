@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import InsertTodo from './InsertTodo';
+import Modal from './Modal';
 
 function TodoList() {
+    const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
     const todoStore = useSelector((store) => store);
     const handleInsertTask = (task) => {
         dispatch({ type: 'add', task: task });
+        setModal(!modal);
+        setTimeout(() => {
+            setModal(false);
+        }, 3000)
     }
+    const handleClose = () => {
+        console.log(modal);
+        setModal(!modal);
+        console.log(modal);
 
+    }
     return (
         <>
+            {modal && <Modal handleClose={handleClose} data={{ desc: 'Your task is completed' }} ></Modal>}
             <InsertTodo handleInsertTask={handleInsertTask} />
             {todoStore?.todo.map((l, i) => {
 

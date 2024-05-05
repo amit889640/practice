@@ -3,15 +3,14 @@ import './App.css';
 import TodoList from './components/TodoList'
 import { Provider } from 'react-redux';
 import { store } from './store/store'
+import Contact from './components/Contact';
 function App() {
   return (
     <Provider store={store}>
-
-      <div className="App">
-        <>
-          <TodoList />
-        </>
-      </div>
+      <>
+        {/* <TodoList /> */}
+        <Contact />
+      </>
     </Provider>
   );
 }

@@ -63,7 +63,7 @@ In postgres optimization
     CREATE TABLE id_1_to_id_100 FOR VALUES FROM 1 TO 100 //create partitioned table by this way
     CREATE TABLE id_1_to_id_100 FOR VALUES FROM 100 TO 300
     CREATE TABLE id_1_to_id_100 FOR VALUES FROM 300 TO 900
-
+-create Index idx on employee(department,last_name,first_name)
 -Avoid using complex calculation in index column in where clause
 -Use direct comparisons instead of wrapping the column in function
 -Avoid sorting whole database , should use with limit
