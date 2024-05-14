@@ -1,148 +1,150 @@
-// const express = require('express')
-// const app = express();
+ const express = require('express')
+ const app = express();
 const EventEmitter = require('events');
 const fs = require('fs');
 const { Stream } = require('stream');
 
-// const router = express.Router();
+ const router = express.Router();
 
 
-// app.listen(3000, (err) => {
-//     if (err) {
-//         console.log(err);
-//     }
-//     console.log('running on 3000')
-// })
+ app.listen(3000, (err) => {
+     if (err) {
+         console.log(err);
+     }
+     console.log('running on 3000')
+ })
 
-// app.use(router)
+ app.use(router)
 
-// router.get('/api/user', (req, res, next) => {
-//     // throw new Error('There is some error');
-//     res.status(200).send({ status: 'Success', message: "list of user" });
-//     next('Error message')
-// })
+ router.get('/api/user', (req, res, next) => {
+      throw new Error('There is some error');
+     res.status(200).send({ status: 'Success', message: "list of user" });
+     next('Error message')
+ })
 
-// router.get('/api/user/:id-:id2', (req, res, next) => {
-//     // throw new Error('There is some error');
-//     res.status(200).send({ status: 'Success', message: `User detail of id : ${req.params.id}` });
-//     // next('Error message')
-// })
-
-
-// // global error handling
-// app.use((error, req, res, next) => {
-//     console.log(`Some error occured ${error}`)
-//     res.status(400).send('Some Error has been occured');
-// })
+ router.get('/api/user/:id-:id2', (req, res, next) => {
+      throw new Error('There is some error');
+     res.status(200).send({ status: 'Success', message: `User detail of id : ${req.params.id}` });
+      next('Error message')
+ })
 
 
-// controllerFunction(fun){
-//     return (req, res, next) => {
-//         fun(req, res, next).catch((error) => {
-//             next(error)
-//         })
-//     }
-// }
-
-// process.on('uncaughtException', (err) => {
-//     console.log('uncaughtException : ' + err);
-// })
+  global error handling
+ app.use((error, req, res, next) => {
+     console.log(`Some error occured ${error}`)
+     res.status(400).send('Some Error has been occured');
+ })
 
 
-// const showEvent = new EventEmitter();
-// showEvent.on('show', () => {
-//     console.log(`Event is open`)
-// })
+ controllerFunction(fun){
+     return (req, res, next) => {
+         fun(req, res, next).catch((error) => {
+             next(error)
+         })
+     }
+ }
 
-// showEvent.on('hide', () => {
-//     console.log(`Event is close`)
-// })
-
-// showEvent.emit('show')
-// showEvent.emit('hide')
-
-
-// function calc(type) {
-//     switch (type) {
-//         case 'add':
-//             return (a, b) => {
-//                 console.log(a + b);
-//             }
-//             break;
-//         case 'mul':
-//             return (a, b) => {
-//                 console.log(a * b);
-//             }
-//             break;
-
-//         default:
-//             break;
-//     }
-// }
+ process.on('uncaughtException', (err) => {
+     console.log('uncaughtException : ' + err);
+ })
 
 
-// console.log(calc('add')(2, 3))
-// console.log(calc('mul')(2, 3))
+ const showEvent = new EventEmitter();
+ showEvent.on('show', () => {
+     console.log(`Event is open`)
+ })
+
+ showEvent.on('hide', () => {
+     console.log(`Event is close`)
+ })
+
+ showEvent.emit('show')
+ showEvent.emit('hide')
 
 
-// function returnCB() {
-//     return () => {
-//         console.log('callback return ');
-//     }
-// }
+ function calc(type) {
+     switch (type) {
+         case 'add':
+             return (a, b) => {
+                 console.log(a + b);
+             }
+             break;
+         case 'mul':
+             return (a, b) => {
+                 console.log(a * b);
+             }
+             break;
+
+         default:
+             break;
+     }
+ }
 
 
-// (() => {
-//     console.log('callback return1` ');
-// })()
-
-// console.log(returnCB()())
+ console.log(calc('add')(2, 3))
+ console.log(calc('mul')(2, 3))
 
 
-// fs.readFile('text.txt', 'utf-8', (err, data) => {
-//     if (err) {
-//         console.log(`Error : ${err}`)
-//     }
-//     console.log(data);
-// })
-
-// const read = fs.readFileSync('text.txt', 'utf-8');
-// console.log(read)
-
-// const emp1 = {
-//     name: "amit"
-// }
-
-// const emp2 = {
-//     name: "sumit"
-// }
-
-// function displayName(dep) {
-//     console.log(`Name is : ${this.name} department name :- ${dep}`)
-// }
-
-//  displayName.call(emp1, 'Dev');
-//  displayName.apply(emp1, ['Dev']);
-// const amitDisplay = displayName.bind(emp1, ['Dev']);
-// amitDisplay();
+ function returnCB() {
+     return () => {
+         console.log('callback return ');
+     }
+ }
 
 
+ (() => {
+     console.log('callback return1` ');
+ })()
 
-// Stream
-// All streams are instances of EventEmitter . They emit events that can be used to read and write data.
-
-Streams are essentially a sequence of data that is processed sequentially, allowing developers to read and process data piece by piece or in chunks, instead of reading all the data into memory at once. There are four types of Node streams: Readable streams, Writable streams, Duplex streams, and Transform streams.
-
-// write stream
-// const file = fs.createWriteStream('./big.file');
-// for (let i = 0; i <= 1e6; i++) {
-//     file.write('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n');
-// }
-// file.end();
+ console.log(returnCB()())
 
 
-// const src = fs.createReadStream('./big.file');
-// src.pipe(res);
+ fs.readFile('text.txt', 'utf-8', (err, data) => {
+     if (err) {
+         console.log(`Error : ${err}`)
+     }
+     console.log(data);
+ })
+
+ const read = fs.readFileSync('text.txt', 'utf-8');
+ console.log(read)
+
+ const emp1 = {
+     name: "amit"
+ }
+
+ const emp2 = {
+     name: "sumit"
+ }
+
+ function displayName(dep) {
+     console.log(`Name is : ${this.name} department name :- ${dep}`)
+ }
+
+  displayName.call(emp1, 'Dev');
+  displayName.apply(emp1, ['Dev']);
+ const amitDisplay = displayName.bind(emp1, ['Dev']);
+ amitDisplay();
+
+
+
+ Stream
+ All streams are instances of EventEmitter . They emit events that can be used to read and write data.
+
+Streams are essentially a sequence of data that is processed sequentially, allowing developers to read and process data piece by piece or in chunks, instead of reading all the data into memory at once. There are four types of Node streams: 
+Readable streams, Writable streams, Duplex streams (both read and write), and Transform streams.
+like realtime video, music
+
+ write stream
+ const file = fs.createWriteStream('./big.file');
+ for (let i = 0; i <= 1e6; i++) {
+     file.write('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n');
+ }
+ file.end();
+
+
+ const src = fs.createReadStream('./big.file');
+ src.pipe(res);
 
 /*
 How to provide security to express/nodejs
@@ -157,92 +159,92 @@ How to provide security to express/nodejs
 10. Authenticate & Authorize
 */
 
-// error check first
-// var data = fs.readFile("file.txt", (err, data) => { // this is the call back
-//     if (err) {
-//         console.log(err); //checking the error first this is error check first
-//         return;
-//     } else {
-//         console.log(data);
-//     }
+ error check first
+ var data = fs.readFile("file.txt", (err, data) => {  this is the call back
+     if (err) {
+         console.log(err); checking the error first this is error check first
+         return;
+     } else {
+         console.log(data);
+     }
 
-// })
+ })
 
-// how can we avoid call back hell??
-//  we should use promises
+ how can we avoid call back hell??
+  we should use promises
 
-// What is promises use for?
-// to deal with the async operation we make the use of
-// - callback function
-// - promises
-// - async and await
+ What is promises use for?
+ to deal with the async operation we make the use of
+ - callback function
+ - promises
+ - async and await
 
 
-// Different bet yarn and npm?
-// yarn: It stands for Yet Another Resource Negotiator and
-//  it is a package manager just like npm. It was developed
-//  by Facebook and is now open-source. The intention behind
-//  developing yarn(at that time) was to fix performance and
-//  security concerns with npm.
+ Different bet yarn and npm?
+ yarn: It stands for Yet Another Resource Negotiator and
+  it is a package manager just like npm. It was developed
+  by Facebook and is now open-source. The intention behind
+  developing yarn(at that time) was to fix performance and
+  security concerns with npm.
 
-// How to handle the async function in node??
-// what is enumeration?
-// different bet callback and promise
-// callback
-// -it can call many times
+ How to handle the async function in node??
+ what is enumeration?
+ different bet callback and promise
+ callback
+ -it can call many times
 
-// promises
-// -it can call only only once
-// -it return resolve and reject
-// function getApiData(){
-//     // call some api related work
+ promises
+ -it can call only only once
+ -it return resolve and reject
+ function getApiData(){
+      call some api related work
 
-//     return new Promises((resole, reject)=>{
-//         return resolve
-//         or
-//         return reject
-//     })
-// }
+     return new Promises((resole, reject)=>{
+         return resolve
+         or
+         return reject
+     })
+ }
 
-// what is process object and global object?
-// It is the object which have details about the project and the node modules
+ what is process object and global object?
+ It is the object which have details about the project and the node modules
 
-// What is event emmitter?
-// it is the use to create event and do some stuff on that particular event
+ What is event emmitter?
+ it is the use to create event and do some stuff on that particular event
 
-// var eventEmitter = new EventSource.EventEmitter();
-// eventEmitter.on('event1', () => {
-//     console.log('event is called');
-// })
+ var eventEmitter = new EventSource.EventEmitter();
+ eventEmitter.on('event1', () => {
+     console.log('event is called');
+ })
 
-// eventEmitter.emit('event1');
+ eventEmitter.emit('event1');
 
-// setimidiate settimeout nexttick?
+ setimidiate settimeout nexttick?
 
-// setImmediate is called just after the events and setTimeout is over
-// Use setImmediate if you want to queue the function behind whatever I/O event callbacks that are already in the event queue.
+ setImmediate is called just after the events and setTimeout is over
+ Use setImmediate if you want to queue the function behind whatever I/O event callbacks that are already in the event queue.
 
-// nextTick is is executed after the all event queue is over after all the setTimeout and setImmediate is over.
-// Use process. nextTick to effectively queue the function at the head of the event queue so that it executes immediately after the current function completes
+ nextTick is is executed after the all event queue is over after all the setTimeout and setImmediate is over.
+ Use process. nextTick to effectively queue the function at the head of the event queue so that it executes immediately after the current function completes
 
-// What is linter tool?
-// -It is the code analysis tool for js
-// -It checks the code for the quality and maintainability of the code
-// -It check all the common mistakes
-// - Two type of linter toolbar
-// -JSLINT
-// -JSHINT is more linient
+ What is linter tool?
+ -It is the code analysis tool for js
+ -It checks the code for the quality and maintainability of the code
+ -It check all the common mistakes
+ - Two type of linter toolbar
+ -JSLINT
+ -JSHINT is more linient
 
-// what is jwt
-// json web token
-// for the authentication login
+ what is jwt
+ json web token
+ for the authentication login
 
-// const jwt = require('jsonwebtoken');
-// token = jwt.sign({ id: wer234 }, 'keyword_secret', { expireIn: 7 days })
+ const jwt = require('jsonwebtoken');
+ token = jwt.sign({ id: wer234 }, 'keyword_secret', { expireIn: 7 days })
 
-// to verify it
-// data = jwt.verify(token,'keyword_secret');
-// return data that is id:wer123
+ to verify it
+ data = jwt.verify(token,'keyword_secret');
+ return data that is id:wer123
 
 Cause of memory leak
 -Global variables
@@ -277,11 +279,11 @@ A callback is a function passed as an argument to another function
 A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
 
 Load test
-https://medium.com/globant/load-testing-nodejs-apis-with-autocannon-c3770478cb36
+https:medium.com/globant/load-testing-nodejs-apis-with-autocannon-c3770478cb36
 npm install -g autocannon
 
-GET:- autocannon -c 500 -d 5 http://localhost:8000/getAll // Running 500 connections in 5 seconds
-POST:- autocannon -m POST -H “Content-Type:application/x-www-form-urlencoded” -b “name=swimming&active=true” http://localhost:8000/save  // specify Header(-H) and Body (-b)
+GET:- autocannon -c 500 -d 5 http:localhost:8000/getAll  Running 500 connections in 5 seconds
+POST:- autocannon -m POST -H “Content-Type:application/x-www-form-urlencoded” -b “name=swimming&active=true” http:localhost:8000/save   specify Header(-H) and Body (-b)
 
 
 Callback queue or Task queue have some sort of task inside this queue there is micro task q and macro task q
@@ -289,3 +291,6 @@ micro:- dom manupulation , change in the state , it has higher priority,promise 
 Micro-tasks include mutation observer callbacks as well as promise callbacks.
 
 macro: macro-task queue has a lower priority like page loading, input, network events, timer events
+
+Buffer:- they provide a fast and efficient way to store and manipulate binary data in Node.js.
+const myBuffer = Buffer.from('Hello, world!');

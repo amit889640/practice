@@ -1,0 +1,12 @@
+.main {
+    position: absolute;
+    border: 2px solid blue;
+    top: 35%;
+    left: 50%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.close {
+    float: right;
+}

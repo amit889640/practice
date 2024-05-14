@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 /* 1.*/
 // let a = true;
 // let c = 1;
@@ -11,60 +12,66 @@
 // }
 
 /* output - keep printing the ++a from while loop
+=======
+/*
+
+let a = true;
+let c = 1;
+setTimeout(() => {
+    a = false;
+}, 2000);
+
+while (a) {
+    console.log(++a);
+}
+
+output - keep printing the ++a from while loop
+>>>>>>> 004d31a18f8487451b267426e6eef16d72fb209f
 thread is single and it is taken or busy for while loop
 and a is to be false after 2 second is waiting to get the a to be false as the thread is busy
 if the any for while or any synchrounous function is busy or keep running the it make the thread busy untill it finishes
 solition we have to use the child process function like fork
-*/
+
+2.
+let a = true;
+let c = 1;
+setTimeout(() => {
+    a = false;
+}, 2000);
+
+setInterval(() => {
+    if (a) {
+        console.log(c++)
+    }
+}, 1999);
 
 
-/* 2.*/
-
-// let a = true;
-// let c = 1;
-// setTimeout(() => {
-//     a = false;
-// }, 2000);
-
-// setInterval(() => {
-//     if (a) {
-//         console.log(c++)
-//     }
-// }, 1999);
-
-/*
 Now it will print till 2 second because it is not getting the thread block continously
 as it stop after the 200 ms and making the a false after the 2s result in the stopping the print.
 
-*/
-
-/* 3. */
-
-// let a = true;
-// let c = 1;
+3. 
+let a = true;
+let c = 1;
 
 
-// let d = setInterval(() => {
-//     if (a) {
-//         console.log(c++)
-//     }
-// }, 200);
+let d = setInterval(() => {
+    if (a) {
+        console.log(c++)
+    }
+}, 200);
 
-// setTimeout(() => {
-//     clearInterval(d)
-// }, 2000);
+setTimeout(() => {
+    clearInterval(d)
+}, 2000);
 
-/* print till 2s */
+print till 2s 
 
-/* 4. */
+4. 
+setTimeout(() => {
+    console.log('set timeout')
+}, 0);
 
-// setTimeout(() => {
-//     console.log('set timeout')
-// }, 0);
-
-// console.log('hello console.log')
-
-/*
+console.log('hello console.log')
 output:-
 hello console.log
 set timeout
@@ -93,141 +100,156 @@ settimeout async funciton goes to event handler.
 
 // because - can operate only on the number so it changes the '2' to number 2 and substract
 
-/* 6 */
+5
+console.log(2 + '2')
+op
+22
+because + concate it thinking it is the string
 
-// remove duplicacy
+console.log(2 - '3')
 
-// let num = [1, 2, 2, 3, 3, 5, 5]
+op
+0
 
-// console.log(Array.from(new Set(num)))
-// to convert into array
+because - can operate only on the number so it changes the '2' to number 2 and substract
 
-// console.log([...new Set(num)])
-// can also use spread operator to convert in array
+6. 
+remove duplicacy
 
-/* 7. */
+let num = [1, 2, 2, 3, 3, 5, 5]
 
-// console.log(5 < 6 < 7)  true
+console.log(Array.from(new Set(num)))
+to convert into array
 
-// console.log(7 > 6 > 5);  suppose to be tru but false
+console.log([...new Set(num)])
+can also use spread operator to convert in array
 
-// because true is converted into 1 while using > operator
+7.
+console.log(5 < 6 < 7)  true
+console.log(7 > 6 > 5);  suppose to be tru but false
+because true is converted into 1 while using > operator
 
-/* 8 */
+8
+do not alllow the object to add more property
 
-// do not alllow the object to add more property
+let o = {
+    name: 'amit'
+}
 
-// let o = {
-//     name: 'amit'
-// }
+Object.freeze(o)  do not allow to add any more property
 
-// Object.freeze(o)  do not allow to add any more property
+Object.seal(o) do not allow to add but can modify existing
 
-// Object.seal(o) do not allow to add but can modify existing
+o.age = 26
 
-// o.age = 26
+console.log(o)
 
-// console.log(o)
-
-/* 9 */
-// console.log(Math.max())
-// output is -infinity
-// because it take the min number and start comparing and found -infinity is max
-
-
-
-
-// call apply bind
-
-// obj1 = {
-//     Name: "amit",
-//     Age: 27,
-// }
-
-// obj2 = {
-//     Name: "Sumit",
-//     Age: 25
-// }
+9
+console.log(Math.max())
+output is - infinity
+because it take the min number and start comparing and found - infinity is max
 
 
-// suppose you want to use a function to display both detail , but you dont want to add saperate function in both the obj
-// then make the use of call
+call apply bind
 
+obj1 = {
+    Name: "amit",
+    Age: 27,
+}
 
-// function display(displayTime) {
-//     console.log(`Name:${this.Name},Age:${this.Age}, Display time:${displayTime}`);
-// }
-// // this way you can call , calling display with obj1
+obj2 = {
+    Name: "Sumit",
+    Age: 25
+}
 
-// display.call(obj1, new Date()); //
+suppose you want to use a function to display both detail, but you dont want to add saperate function in both the obj
+then make the use of call
 
-// // bind is same but passing parameter is different
+function display(displayTime) {
+    console.log(`Name:${this.Name},Age:${this.Age}, Display time:${displayTime}`);
+}
+this way you can call, calling display with obj1
 
-// display.apply(obj1, [new Date()]); //
+display.call(obj1, new Date()); 
 
-// // bind return the new function that function is executable like:
-// let printfn = display.bind(obj1, [new Date()]);
+ bind is same but passing parameter is different
 
-// printfn();
+display.apply(obj1, [new Date()]); 
 
+ bind return the new function that function is executable like:
+let printfn = display.bind(obj1, [new Date()]);
 
-// console.log(this) // {} because its parent is iife not global object as js wrap everything in iife then execute it
+printfn();
 
-// function demo() {
-//     console.log(this);
-// }
+console.log(this)  { } because its parent is iife not global object as js wrap everything in iife then execute it
 
-// demo();// this will print global object as its parent is not iife its parent is global object
+function demo() {
+    console.log(this);
+}
 
+demo(); this will print global object as its parent is not iife its parent is global object
 
+let demo = () => {
+    console.log(this); this will print the { } because this is anonymous function and its parent is iife so.
+}
 
-// let demo = () => {
-//     console.log(this); // this will print the {} because this is anonymous function and its parent is iife so.
-// }
+demo();
 
-// demo();
+clearTimeout(timer);
+clearInterval(timer);
 
-// clearTimeout(timer);
-// clearInterval(timer);
-
-// Curring:- It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence.
-
-// to add function in array
-// Array.prototype.mul = function (fun) {
-//     let newArr = []
-//     for (e of this) {
-//         newArr.push(fun(e));
-//     }
-//     return newArr;
-// }
-
-
-
-// let arr = [1, 2, 3, 4, 5]
-// let newAr = arr.mul((e) => {
-//     return e * 2;
-// });
-// console.log(newAr)
-// Describe JavaScript closures and how to implement them
-
-// Closure in JavaScript is a form of lexical scoping used to preserve variables from the outer scope of a function in the inner scope of a function
-
-/*
-Promises
- -are objects that represent the eventual outcome of an asynchronous operation.
- -used to handle asynchronous operations
- -Three state = pending, fulfilled, or rejected.
- -Promises, on the other hand, allow for asynchronous code to be written in a more organized fashion
-
- Callbacks
- -A callback is a function that is passed as an argument to another function
- -callbacks are often nested within one another, making them difficult to read and understand.
-
- The async keyword transforms a regular JavaScript function into an asynchronous function, causing it to return a Promise. 
- The await keyword is used inside an async function to pause its execution and wait for a Promise to resolve before continuing.
- -
-*/
+to add function in array
+Array.prototype.mul = function (fun) {
+    let newArr = []
+    for (e of this) {
+        newArr.push(fun(e));
+    }
+    return newArr;
+}
 
 
 
+let arr = [1, 2, 3, 4, 5]
+let newAr = arr.mul((e) => {
+    return e * 2;
+});
+console.log(newAr)
+Describe JavaScript closures and how to implement them
 
+Closure in JavaScript is a form of lexical scoping used to preserve variables from the outer scope of a function in the inner scope of a function
+
+
+    Promises
+-are objects that represent the eventual outcome of an asynchronous operation.
+- used to handle asynchronous operations
+    - Three state = pending, fulfilled, or rejected.
+- Promises, on the other hand, allow for asynchronous code to be written in a more organized fashion
+
+Callbacks
+    - A callback is a function that is passed as an argument to another function
+-callbacks are often nested within one another, making them difficult to read and understand.
+
+The async keyword transforms a regular JavaScript function into an asynchronous function, causing it to return a Promise. 
+The await keyword is used inside an async function to pause its execution and wait for a Promise to resolve before continuing.
+
+JavaScript modules allow you to break up your code into separate files.
+This makes it easier to maintain the code - base.
+ES Modules rely on the import and export statements.
+
+A Map is an unordered list of key - value pairs where the key and the value can be of any type like string, boolean, number, etc.In a Weak Map, every key can only be an object and function
+    WeakMap does not prevent the object from being garbage collected.
+
+
+        Curring: - It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence.
+Curring example
+function mul(m) {
+    return (n) => {
+        if (!n) {
+            return m;
+        } else {
+            return mul(m * n);
+        }
+    }
+}
+console.log(mul(3)(2)(4)())
+    * /
