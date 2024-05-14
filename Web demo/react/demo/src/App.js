@@ -1,18 +1,11 @@
 import { useState } from 'react';
 import './App.css';
-import TodoList from './components/TodoList'
-import { Provider } from 'react-redux';
-import { store } from './store/store'
 function App() {
   return (
-    <Provider store={store}>
 
-      <div className="App">
-        <>
-          <TodoList />
-        </>
-      </div>
-    </Provider>
+    <div className="App">
+      This is reacts
+    </div>
   );
 }
 

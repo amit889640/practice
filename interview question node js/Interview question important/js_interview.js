@@ -1,3 +1,4 @@
+
 /* 1.*/
 // let a = true;
 // let c = 1;
@@ -79,9 +80,16 @@ settimeout async funciton goes to event handler.
 // because + concate it thinking it is the string
 
 // console.log(2 - '3')
-
 // op
 // 0
+
+// console.log(1 + "2" + "2");  //112
+// console.log(1 + +"2" + "2");  //32
+// console.log(1 + -"1" + "2"); //02
+// console.log(+"1" + "1" + "2"); //22
+// console.log("A" - "B" + "2"); // NAN2
+// console.log("A" - "B" + 2); // NAN
+
 
 // because - can operate only on the number so it changes the '2' to number 2 and substract
 

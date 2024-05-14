@@ -1,0 +1,25 @@
+// // largest and smallest no from unsorted array
+// function getLargestAndSmallest(arr) {
+//     arr.sort((a, b) => a - b);
+//     return { largest: arr[arr.length - 1], smallest: arr[0] }
+// }
+
+// console.log(getLargestAndSmallest([1, 20, 3, 2, 8, 3, 6, -2, -1]));
+
+
+function calc(fun, a, b) {
+    return fun(a, b);
+}
+
+console.log(calc((a, b) => { return a + b }, 3, 4));
+
+
+// higher order funciton with example
+// how the react know if there is any update in the state
+// largets and smallest from Array
+// on the base of what you will increase the pods and cluster
+// manage traffic in node
+// what is the need of hook over class based
+// what developer get from hooks advantage
+
+

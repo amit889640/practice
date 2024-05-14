@@ -1,0 +1,42 @@
+// function outer() {
+//     let o = 10;
+//     function inner() {
+//         let i = 20;
+//         console.log(`Outer ${o}`);
+//     }
+//     console.log(`inner ${i}`);
+// }
+// outer();
+
+// function display(){
+//     console.log('dispay')
+// }
+
+// const display = ()=>{
+//     console.log('dispay')
+// }
+
+
+
+// for (let i = 0; i < 2; i++) {
+//     setTimeout(() => { console.log(i) }, 1000)
+// }
+
+// 2
+// 2
+
+/*
+// select name,salary from (select name,salary,  row_number() over(order by salary desc) as rank from emp) where rank=3
+
+// select name, salary from emp order by salary desc limit 1 offset 2
+
+db.getCollection('emp').find().sort({salary:-1}).limit(3).skip(2)
+
+createIndex({})
+age>55
+s=55000
+db.getCollection('emp').updateAll({age:{$gt:55}},{$set:{salary:55000}})
+
+
+
+*/ 
