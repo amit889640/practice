@@ -148,3 +148,13 @@ db.bar.update( {user_id : 123456 , "items.item_name" : "my_item_two" } ,
                 false , 
                 true);
 
+To do the transaction                
+const session=db.getMongo().startSession();
+session.startTransaction();
+const custCollection = session.getDatabase("Bank").cust
+custCollection.upateOne({id:1},{$inc:{balance:-100}})
+custCollection.upateOne({id:2},{$inc:{balance:100}})
+session.commitTransaction()
+session.endSession()
+
+

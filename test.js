@@ -111,24 +111,19 @@
 //         }
 //     }
 // // }
-// let map = new Map()
-// map.set('name', 'amit');
 
-// map = undefined;
-// console.log(map.get('name'))
-
-
-
-let arr = [1, 2, 3, 4]
-
-arr.__proto__.double = function (fun) {
-    let temp = [];
-    this.forEach(e => {
-        temp.push(fun(e));
-    });
-    return temp;
+function cal(fun, operationName, a, b) {
+    console.log(`Result of ${operationName} is ${fun(a, b)}`)
 }
 
-console.log(arr.double((e) => {
-    return e * 3;
-})) 
+
+
+function add(a, b) {
+    return a + b
+}
+
+function mul(a, b) {
+    return a * b
+}
+
+cal(mul, 'multiplication', 2, 3)

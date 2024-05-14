@@ -53,11 +53,20 @@ Serializable	    Not possible	Not possible	        Not possible	Not possible
 
 Ref:- https://www.postgresql.org/docs/current/transaction-iso.html
 
+-In postgres FOR UPDATE can be use at last of the update query to do the lock till update, other query will wait till updation is done .
+-You can also use isolation level like IsolationLevel:"serializable" it also  do lock but will throw error if some one access it.
+But both the method will have performance issue
+
 
 In postgres optimization
 -Prepared Statement: pre-gernerated statement for the query which is very frequently executed. But it work for same connection if conn closed you have to create again
 
 PREPARE insert_task as INSERT INTO task (name,due_data,is_done) VALUES ($1,$2,$3);
+
+-Using index , search will happen through b-tree
+-Avoid lots of join
+-Avoid using complex calculation at index query
+-select some column instead of using *
 
 -Indexing : for optimize scan
 
@@ -70,3 +79,14 @@ PREPARE insert_task as INSERT INTO task (name,due_data,is_done) VALUES ($1,$2,$3
 -Avoid using complex calculation in index column in where clause
 -Use direct comparisons instead of wrapping the column in function
 -Avoid sorting whole database , should use with limit
+
+PostgreSQL processes more than 20 thousand transactions per second when MongoDB doesn't reach 2 thousand. PostgreSQL
+
+When working with large numbers of client
+connections, it is considered best practices to run PostgreSQL using a load balancer such
+as PgBouncer for connection pooling.
+
+Pg are much faster than mongo
+Pg concurrent client could be more than 100
+Mongo concurrent client could be defaults to 100
+
