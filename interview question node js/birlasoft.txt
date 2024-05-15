@@ -1,0 +1,37 @@
+// const fs = require('fs')
+
+// setTimeout(() => {
+//     fs.unlink('/vdo/filename.mp4', (err, data) => {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             console.log(data)
+//         }
+//     })
+// }, 5000);
+
+
+// stream
+// buffer
+
+
+// {
+//     let a = 23;
+// }
+
+// console.log(a)
+
+// var c = 24;
+
+// function a() {
+//     return b();
+// }
+
+// function b() {
+//     console.log(c)
+// }
+
+// a();
+
+
+// how to get google.com and fb.com in your api without using original url
