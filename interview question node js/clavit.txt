@@ -1,0 +1,83 @@
+// const express = require('express')
+// const app = express();
+// const PORT = 3005;
+// function log(req, res, next) {
+//     console.log(req.method);
+//     next();
+// }
+
+// app.listen(PORT, (error) => {
+//     if (!error)
+//         console.log("Server is Successfully Running, and App is listening on port " + PORT);
+//     else
+//         console.log("Error occurred, server can't start", error);
+// }
+// );
+
+
+
+// app.use(log)
+// app.use(express.json());
+
+// app.post('/', (req, res) => {
+//     const { name } = req.body;
+//     if (name.length > 10) { throw new Error('Name is too big') }
+//     res.send(`Welcome ${name}`);
+// })
+
+// app.get('/api', (req, res, next) => {
+//     res.send({ message: 'get request' })
+//     // throw new Error('Name is too big')
+//     // try {
+//     // } catch (error) {
+//     //     next(error)
+//     // }
+// })
+
+// app.use((error, req, res, next) => {
+//     res.status(500).send({ message: 'Something went wrong' });
+//     // next();
+// })
+/*
+controller
+-
+-customer
+-Owner
+-order
+
+
+service
+-email->nodemailer
+
+-order 
+    status-receive,initiated,assigned-person,vehicle(vehicle number),driver(driverid), driver arrival pickup, onload-stuff,drop-off,off-load.
+    email->send(person-email,status,order-detail)
+
+socket.io-> realtime update in front end
+
+
+router-> controller-> service->repo->db
+
+baseClass-> controller service repo
+
+
+everyday at fix 
+service-> cron 
+email()
+db-> driver(email,order detail,status -> pending),
+
+
+log.info()
+log.error()
+
+
+typescript bundle size how to decrease it
+why we use auth and authr
+
+
+message compression in rabbit mq
+
+mongo
+setModifier
+
+*/
