@@ -1,0 +1,57 @@
+// var a = { name: 'neel', lastname: 'goel' }
+
+// delete a.name
+
+// for (key in a) {
+//     console.log(a[key]);
+// }
+
+// var arr = [23, 454, 2313, 435345];
+// arr.splice(2, 1)
+// console.log(arr)
+
+// var a = [{ name: 'neel', salary: 3123 }, { name: 'neelkant', salary: 313 }, { name: 'rohit', salary: 123 }, { name: 'vikas', salary: 3 }]
+
+// let pos;
+// let maxSalary = -Infinity;
+// for (let i = 0; i < a.length; i++) {
+//     if (a[i].salary > maxSalary) {
+//         maxSalary = a[i].salary;
+//         pos = i;
+//     }
+// }
+
+
+
+// console.log(a.sort((a, b) => a.salary - b.salary)[a.length - 1].name)
+
+// console.log(a[pos].name);
+
+function callStack() {
+    console.log(1)
+
+    setTimeout(() => {
+        console.log(2)
+    }, [2000])
+
+    setTimeout(() => {
+        console.log(3)
+    }, [0])
+
+    console.log(4);
+    console.log(5);
+    console.log(6);
+    console.log(7);
+}
+callStack()
+
+//1
+//4
+//5
+//6
+//7
+//3
+//2
+
+
+gatsby
