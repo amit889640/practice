@@ -1,0 +1,52 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.editor.enablePreview": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 15,
+    "notebook.kernelProviderAssociations": [],
+    "files.associations": {
+        "*.js": "javascript",
+        "*.tsx": "typescriptreact"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    // "[html]": {
+    //     "editor.defaultFormatter": null
+    // },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "security.workspace.trust.untrustedFiles": "open",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "sync.autoUpload": true,
+    "sync.autoDownload": true,
+    "sync.forceUpload": true,
+    "sync.gist": "4899248f0e8ea9d79f61d7cfb87e9d3a",
+    "html.format.enable": false,
+    "html.format.contentUnformatted": "",
+    "editor.formatOnSave": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "cSpell.userWords": [
+        "INITIALVALUE",
+        "notifcation",
+        "occured"
+    ],
+    "tabnine.experimentalAutoImports": true,
+    "editor.inlayHints.enabled": false,
+    "debug.onTaskErrors": "abort",
+    "json.schemas": [
+    
+    ],
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "checkJs": true,
+        "jsx": "react"
+    },
+    "git.autofetch": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always"
+}

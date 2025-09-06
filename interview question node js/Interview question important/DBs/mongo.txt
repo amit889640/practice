@@ -4,7 +4,23 @@ Designed to scale
 Rich with Features
 High Performance
 Load Balancing
-Supports sharding
+
+Scalability (Sharding):- MongoDB supports horizontal scalability through sharding, which distributes data across multiple servers (shards). This allows for handling large datasets and high traffic loads by spreading the data and query processing across a cluster.
+
+Replication (High Availability):
+Replica sets provide high availability and data redundancy by maintaining multiple copies of data across different servers. If a primary server fails, a secondary replica can be promoted to primary, ensuring continuous operation. 
+
+Document-Oriented:JSON-like documents, which can contain nested structures and arrays.
+Schema-less Database:do not enforce a rigid schema
+
+Indexing:to optimize query performance and efficiently retrieve data.
+db.products.createIndex({ name: 1 })
+
+Aggregation Framework:
+
+Load Balancing:
+MongoDB can handle load balancing within sharded clusters and replica sets,
+
 
 // Join between the collection
 db.customer.aggregate([{
@@ -87,6 +103,8 @@ show dbs
 */
 
 /*
+
+Sharding is a method for distributing data across multiple machines.
 How to create shard
 sh.shardCollection("database_name"."collection_name",{"<sharding_key>":1})
 */
@@ -97,6 +115,7 @@ db.createCollection('order_logs', { capped: true, max: 4, size: 10 })
 
 
 // security
+MongoDB provides various features, such as authentication, access control, encryption, to secure your MongoDB deployments
 db.createUser({ user: 'name', pwd: 'password', roles: ["readWrite", "read"] })
 db.getUsers()
 db.dropUser('name', { roles: [] })
@@ -148,7 +167,8 @@ db.bar.update( {user_id : 123456 , "items.item_name" : "my_item_two" } ,
                 false , 
                 true);
 
-To do the transaction                
+To do the transaction       
+Transactions either apply all data changes or roll back the changes         
 const session=db.getMongo().startSession();
 session.startTransaction();
 const custCollection = session.getDatabase("Bank").cust

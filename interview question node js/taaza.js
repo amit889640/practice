@@ -159,3 +159,25 @@
 // SELECT * FROM business_menu_item
 // SELECT DISTINCT price FROM business_menu_item ORDER BY price ASC LIMIT 1 OFFSET 2
 // SELECT * FROM business_menu_item WHERE price = (SELECT DISTINCT price FROM business_menu_item ORDER BY price ASC LIMIT 1 OFFSET 2)
+
+
+
+setImmediate(() => {
+    console.log('immedeati')
+})
+
+queueMicrotask(() => {
+    console.log('q')
+})
+setTimeout(() => {
+    console.log('settimeout')
+}, 0);
+setInterval(() => {
+    console.log('Interval')
+}, 0);
+
+process.nextTick(() => {
+    console.log('tick')
+})
+
+console.log('console')

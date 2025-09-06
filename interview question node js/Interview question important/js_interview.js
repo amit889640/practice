@@ -1,18 +1,3 @@
-
-<<<<<<< HEAD
-/* 1.*/
-// let a = true;
-// let c = 1;
-// setTimeout(() => {
-//     a = false;
-// }, 2000);
-
-// while (a) {
-//     console.log(++a);
-// }
-
-/* output - keep printing the ++a from while loop
-=======
 /*
 
 let a = true;
@@ -26,7 +11,6 @@ while (a) {
 }
 
 output - keep printing the ++a from while loop
->>>>>>> 004d31a18f8487451b267426e6eef16d72fb209f
 thread is single and it is taken or busy for while loop
 and a is to be false after 2 second is waiting to get the a to be false as the thread is busy
 if the any for while or any synchrounous function is busy or keep running the it make the thread busy untill it finishes
@@ -46,7 +30,7 @@ setInterval(() => {
 }, 1999);
 
 
-Now it will print till 2 second because it is not getting the thread block continously
+Now it will print till two second because it is not getting the thread block continously
 as it stop after the 200 ms and making the a false after the 2s result in the stopping the print.
 
 3. 
@@ -77,10 +61,10 @@ hello console.log
 set timeout
 
 settimeout async funciton goes to event handler.
- */
+ 
 
 
-/* 5 */
+/* 5 
 // console.log(2 + '2')
 // op
 // 22
@@ -88,12 +72,12 @@ settimeout async funciton goes to event handler.
 
 // console.log(2 - '3')
 // op
-// 0
+// -1
 
 // console.log(1 + "2" + "2");  //112
 // console.log(1 + +"2" + "2");  //32
 // console.log(1 + -"1" + "2"); //02
-// console.log(+"1" + "1" + "2"); //22
+// console.log(+"1" + "1" + "2"); //122
 // console.log("A" - "B" + "2"); // NAN2
 // console.log("A" - "B" + 2); // NAN
 
@@ -236,9 +220,12 @@ JavaScript modules allow you to break up your code into separate files.
 This makes it easier to maintain the code - base.
 ES Modules rely on the import and export statements.
 
-A Map is an unordered list of key - value pairs where the key and the value can be of any type like string, boolean, number, etc.In a Weak Map, every key can only be an object and function
-    WeakMap does not prevent the object from being garbage collected.
-
+Map:- A Map is an unordered list of key - value pairs  
+    the key and the value can be of any type like string, boolean, number, etc.
+    strong reference type.
+Weak Map:- every key can only be an object and function
+    weak reference type to a memory location.
+    Garbage collector the clean up the memory if the object is lost .
 
         Curring: - It is a technique in functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence.
 Curring example
@@ -253,3 +240,45 @@ function mul(m) {
 }
 console.log(mul(3)(2)(4)())
     * /
+
+
+
+
+// When functions can be treated like any other variable then those functions are first-class functions. 
+
+
+Different behaviour of let and var in the loop because let is block scoped it create new binding with i every iteration and var is functional scoped
+let arr= [];
+for(let i=0;i<3;i++){
+    arr[i]= function (){
+        console.log(i);
+    }
+}
+
+for(var i=0;i<3;i++){
+    arr[i]= function (){
+        console.log(i);
+    }
+}
+
+arr[0]()
+arr[1]()
+arr[2]()
+
+
+
+keep on finding for the 'out ' varialbe while going up in the scope (lexical scoping)
+
+let out = "outer one ";
+function outer() {
+  //   let out = "out";
+  function inner() {
+    console.log(out);
+  }
+  inner();
+}
+
+console.log(outer());
+
+
+*/

@@ -1,5 +1,12 @@
 /*
 
+Lifecyle method:-
+Phase:  Mounting:-
+                constructor(props)->getDerivedStateFromProps()->render()->componentDidMount()
+        Updating:- 
+                getDerivedStateFromProps()->shouldComponentUpdate() ->render()->getSnapshotBeforeUpdate(prevProps,prevState)->render()->componentDidMount()
+        Unmount:- componentWillUnmount()
+
 How to change the port?
 "start": "set PORT=3006 && react-scripts start",
 
@@ -67,6 +74,13 @@ JSX makes it easier to write and add HTML in React.
 Events -> React event are like html event only like onclick->onClick, onchange->onChange
 
 Conditions->  { isGoal ? <MadeGoal/> : <MissedGoal/> } 
+
+Hooks are functions that let you "hook into" React state and lifecycle features from functional components.
+
+There are 3 rules for hooks:
+Hooks can only be called inside React function components.
+Hooks can only be called at the top level of a component.
+Hooks cannot be conditional
 
 memo:- Using memo will cause React to skip rendering a component if its props have not changed.
 useState:-  Hook allows us to track state in a function component.
@@ -138,11 +152,66 @@ When diffing two trees, React first compares the two root elements. The behavior
 
 lazy loading - code splitting - chunking - suspense all are same
 
+What is Suspense?
+Suspense is a React feature that lets your components display an alternative HTML while waiting for code or data to load.
+
+     <Suspense fallback={<div>Loading...</div>}>
+        <Fruits />
+      </Suspense>
+      
+CSS Modules allow you to combine classes using the composes keyword:
+.mybutton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary {
+  composes: mybutton;
+  background-color: #007bff;
+  color: white;
+}
+
+For the global css
+:global(.myheader) {
+  padding: 10px 20px;
+  font-size: 50px;
+  color: white;
+  background-color: dodgerblue;
+}
+
+
+What is useTransition?
+It is use for non urgent update
+The useTransition hook helps you keep your React app responsive during heavy updates.
+It lets you mark some state updates as "non-urgent", allowing other, more urgent updates to happen first.
+
+When to use:
+A slow operation that might freeze the UI
+Updates that aren't immediately critical
+Search results that take time to display
+
+const [isPending, startTransition] = useTransition();
+
+forwardRef lets your component pass a reference to one of its children. It's like giving a direct reference to a DOM element inside your component.
+
+Common uses for forwardRef:
+
+Focusing input elements
+Triggering animations
+Measuring DOM elements
+Integrating with third-party libraries
+
+
+
 SSR is technique for rendering client side app on server and sending fully rendered page to client 
 in csr only root will be there and nothing else
 in ssr you will find all the required element in the div not only root but all
 cons:-  seo , performance
 
+
+A fragment looks like an empty HTML tag: <></>  This will prevent unnecessarily adding extra nodes to the DOM.
 
 Code Preparation
 custom hook

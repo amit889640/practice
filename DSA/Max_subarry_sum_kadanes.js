@@ -40,6 +40,6 @@ function kadanesAlgo(array) {
 
 // array = [2, 3, -6, 6, 8];
 array = [1, 1, -3, 2, -2, -2];
-console.log(maxSumSumArray(array));
+// console.log(maxSumSumArray(array));
 console.log(kadanesAlgo(array));
 //

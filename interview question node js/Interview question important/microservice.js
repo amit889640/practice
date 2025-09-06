@@ -6,6 +6,18 @@ Microservice
 -deployed independently
 -Fast deployment pipeline
 
+. Key Microservices Principles (High-Level Code Decisions)
+Single Responsibility: Each service handles one business domain only.
+
+Independent Databases: Every microservice manages its data store.
+
+Service Communication: Synchronous (HTTP/REST) or asynchronous (RabbitMQ, Kafka) depending on use-case.
+
+API Gateway: For routing requests, security, and aggregation.
+
+Scalable & Replaceable: Services can be developed, deployed, and scaled independently.
+
+Consistent Patterns: Each service uses Controllers, Services, Repositories with class-based architecture.
 
 Issue
 - distributed transaction
@@ -27,14 +39,14 @@ when to chose microservices
     -policy management
 
 Patterns in microservices
-    -Two phase commit pattern
+    -Two phase commit pattern (1st-send the request to all ms and 2nd ms acknowledge if it bolong to that request)
     -Three phase commit pattern
     -Circuit breaker pattern close->(failed->try for 10 time )->open->half open
     -Observability pattern,
     -Composition patter,
     -Api Gateway patter,
     -Service discovery pattern
-    -Saga design pattern
+    -Saga design pattern (Sequential approach to general availability)
         -Choreography pattern:- 1ms -> 2ms-> 3ms
         -Orchestrated pattern:- Gateway -> ms1  
                                         -> ms2    
@@ -45,6 +57,8 @@ Communication between ms
     - (Fire and forget) (a-synchronous comm.) rabbit mq
 
 -How to handle failure. (circuit breaker)
+- always use timeout if the service do not respond
+- Re-try after timeout but the reqeust should be non-idempotent
 -how to communicate between ms and how to handle the failure
 
-*/ 
+*/

@@ -84,9 +84,21 @@ function flat(arr) {
     return temp;
 }
 
+
+function arrFlat(arr) {
+  if (!arr.length) {
+    return [];
+  }
+  const first = arr[0];
+  const rest = arr.slice(1);
+
+  if (Array.isArray(first)) {
+    return arrFlat(first).concat(arrFlat(rest));
+  } else {
+    return [first].concat(arrFlat(rest));
+  }
+}
 console.log(flat(arr))
-
-
 
 let amit = {
     name: 'amit',
