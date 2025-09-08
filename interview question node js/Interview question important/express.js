@@ -13,4 +13,5 @@ A single call to a synchronous function might return in a few microseconds or mi
 -Handle exceptions properly
 Use try-catch
 Use promises
+asdfas
 */
