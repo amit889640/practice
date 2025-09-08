@@ -14,4 +14,6 @@ A single call to a synchronous function might return in a few microseconds or mi
 Use try-catch
 Use promises
 asdfas
+
+notes for nodejs
 */
