@@ -1,0 +1,349 @@
+Nest js 
+NestJS first appeared in 2017, created by Kamil Myśliwiec.
+
+Architectural patterns of Angular
+
+NestJS is a framework for building server-side applications in Node.js. It’s written in TypeScript (but supports plain JavaScript as well).
+
+ modular, testable, and maintainable architecture.
+-use ts
+-architecture around controller module providers
+modules to group related functionality, 
+controllers to handle incoming requests
+providers (often called “services”) for your business logic.
+Inversion of Control (IoC)  is a fundamental design principl, that control over object creation and dependency management is shifted away from your application code to the framework or a dedicated container.
+
+ ready-to-go HTTP server with hot reloading, strict typing, and a sensible folder layout.
+
+Consistency: A single, opinionated way to structure applications.
+Scalability: Clear boundaries (modules) make it easier to grow teams and codebases.
+Testability: Built-in support for Jest and clear separation of concerns.
+Extensibility: A pluggable module system makes it easy to integrate ORMs, WebSockets, GraphQL, microservices, and more.
+
+
+Modularity: Everything lives in a module (AppModule, UsersModule, and so on), which can import other modules or export providers.
+Dependency Injection: Services can be injected into controllers (and even into other services), which fosters loose coupling.
+Decorators and Metadata: With TypeScript decorators (@Module(), @Controller(), @Injectable()), NestJS reads metadata at runtime to wire everything together.
+
+
+
+
+When to chose
+ if you want a solid architecture from day one, 
+if you’re building a large-scale API or microservice suite,
+
+4.1 Modules
+A Module is a logical boundary – a container that groups related components (controllers, providers, and even other modules
+@Module() Decorator
+imports: other modules to use
+controllers: controllers that handle incoming requests
+providers: services or values available via DI
+exports: providers that should be visible to importing modules
+4.2 Controllers
+A Controller maps incoming HTTP requests to handler methods. It’s responsible for extracting request data (query parameters, body, headers) and returning a response. Controllers should remain thin – delegating business logic to providers.
+@Controller(path?): Defines a route prefix
+@Get, @Post, @Put, @Delete, and so on: Define method-level routes
+@Param(), @Query(), @Body(), @Headers(), @Req(), @Res(): Decorators to extract request details
+Providers (Services)
+Providers are classes annotated with @Injectable() that contain your business logic or data access. Anything you want to inject elsewhere must be a provider. You can provide plain values, factory functions, or classes.
+@Injectable(): Marks a class as available for DI
+
+
+Scope: Default is singleton, but you can change to request or transient
+
+
+Custom Providers: Use useClass, useValue, useFactory, or useExisting for more control
+ 
+
+
+ How DI Works in NestJS
+When your application boots, Nest builds a module-based IoC container. Each @Injectable() provider is registered in the container under a token (by default, its class). When a class declares a dependency in its constructor, Nest looks up that token and injects the matching instance.
+Singleton scope: One instance per application (default)
+Request scope: New instance per incoming request
+Transient scope: New instance every time it’s injected
+Behind the scenes, Nest collects metadata from decorators (@Injectable(), @Controller()) and builds a graph of providers. When you call NestFactory.create(AppModule), it resolves that graph and wires everything together.
+
+Custom Providers and Factory Providers
+Sometimes you need to inject non-class values (APIs, constants) or run logic at registration time.
+
+export const APP_NAME = {
+  provide: 'APP_NAME',
+  useValue: 'MyAwesomeApp',
+};
+
+// app.module.ts
+@Module({
+  providers: [APP_NAME],
+  exports: ['APP_NAME'],
+})
+export class AppModule {}
+
+// some.service.ts
+@Injectable()
+export class SomeService {
+  constructor(@Inject('APP_NAME') private readonly name: string) {}
+
+  whoAmI() {
+    return `Running in ${this.name}`;
+  }
+}
+Middleware are imports in the module.ts file
+
+How to write middleware
+@Injectable()
+export class AuthMiddleware implements NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    if (!req.headers.authorization) {
+      return res.status(401).send('Unauthorized');
+    }
+    // validate token...
+    next();
+  }
+}
+How to use it @Module({
+  controllers: [UsersController],
+})
+export class SecurityModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes(UsersController);    // apply to all routes in UsersController
+  }
+}
+
+
+Lifecycle of Request
+ routing to the correct handler, applying pipes, guards, interceptors, and finally invoking your controller method
+
+
+
+7.1 What Are Pipes?
+A Pipe is a class annotated with @Injectable() that implements the PipeTransform interface. It has a single method:
+Use for 
+Transformation of data
+Validation of input
+
+
+Inbuilt pipe:- ValidationPipe, ParseIntPipe, ParseFloatPipe
+ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
+
+
+
+
+Custom pipe
+
+
+// src/common/pipes/string-to-number.pipe.ts
+import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
+
+
+@Injectable()
+export class StringToNumberPipe implements PipeTransform {
+  transform(value: any): number {
+    const numericValue = parseInt(value, 10);
+
+
+    if (isNaN(numericValue)) {
+      throw new BadRequestException('Validation failed: String value must be a number.');
+    }
+    
+    return numericValue;
+  }
+}
+
+
+
+
+Guards
+
+
+ a guard is a special type of provider that determines whether a given request should be handled by a specific route handler.
+A guard is a class annotated with @Injectable() that implements the CanActivate interface. The core of a guard is its canActivate() method, which must return a boolean, a Promise<boolean>, or an Observable<boolean>. 
+
+
+If true is returned, the request will proceed to the route handler.
+If false is returned, NestJS will deny the request and, by default, send a 403 Forbidden response.
+Use of Guards
+Authentication Authorization
+Rate limiting
+Permission Access controll
+
+
+
+
+What are interceptors?
+An interceptor is a class annotated with @Injectable() and implements the NestInterceptor interface
+In NestJS, interceptors are classes that can bind extra logic before and after method execution, transform the result or exceptions from a function, and extend a function's behavio
+Primary use cases for interceptors:
+Response transformation: Modify the data returned by a route handler before it's sent to the client.
+Logging: Perform logging tasks, such as tracking method execution time, both before and after the handler is executed.
+Caching: Intercept and handle repeated requests by returning a cached response instead of calling the route handler.
+Exception mapping: Catch and transform exceptions thrown by a function into a user-friendly or standardized error format.
+Timeout handling: Implement timeout logic using RxJS operators to cancel a request if it takes too long. 
+
+
+
+
+What is DTOs
+In NestJS, a Data Transfer Object (DTO) is a class that defines the shape of data being transferred between the client and the application
+
+
+ -DTOs are most commonly used in conjunction with NestJS's ValidationPipe and the class-validator and class-transformer libraries.
+-ensuring consistency and integrity in how data is received and sent
+Key role of DTOs
+Data Validation
+Type safety
+Saperation of concern:- 
+Security
+Data Transformatio
+
+
+
+
+Custom decorator
+ Create the decorator file
+Create a new file, for example, src/auth/current-user.decorator.ts. 
+typescript
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+
+
+export const CurrentUser = createParamDecorator(
+  (data: string, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    const user = request.user;
+
+
+    return data ? user?.[data] : user;
+  },
+);
+ 
+
+
+
+
+
+
+S@UseGuards(JwtAuthGuard)
+  @Get('email')
+  getEmail(@CurrentUser('email') email: string) {
+    return email;
+  }
+
+
+
+
+
+
+How to manage error handling in NestJS?
+NestJS provides a robust, centralized approach to error handling that makes your applications more reliable and maintainable
+. The primary mechanism for handling exceptions is exception filters, but you also use built-in HTTP exceptions and validation pipes for specific use cases. 
+Key concepts for managing errors
+1. Throwing standard HTTP exceptions
+For common operational errors, use NestJS's built-in HttpException classes. When one of these is thrown, the framework automatically catches it and sends an appropriate JSON response with the correct HTTP status code. 
+Example:
+NotFoundException: Returns a 404 Not Found response when a resource is not found.
+BadRequestException: Returns a 400 Bad Request response for client errors, such as invalid input.
+UnauthorizedException: Returns a 401 Unauthorized response when authentication fails. 
+typescript
+import { Injectable, NotFoundException } from '@nestjs/common';
+
+
+@Injectable()
+export class CatsService {
+  private cats = [];
+
+
+  findOne(id: string) {
+    const cat = this.cats.find(cat => cat.id === id);
+    if (!cat) {
+      throw new NotFoundException(`Cat with ID "${id}" not found`);
+    }
+    return cat;
+  }
+}
+
+
+Use code with caution.
+2. Global exception filter for centralized handling
+To ensure a consistent error response format across your entire application, you can create a global exception filter. This filter catches all unhandled exceptions, including standard ones and generic errors, and transforms them into a structured JSON response. 
+Example: A global filter 
+An example of an AllExceptionsFilter is available for viewing in the referenced web document. To apply a filter globally, use app.useGlobalFilters(new AllExceptionsFilter()). 
+3. Data validation with global pipes
+Using a global ValidationPipe is recommended for handling validation errors. This pipe automatically catches invalid input based on DTO rules and throws a BadRequestException before the request reaches the controller. You can apply a validation pipe globally in your main.ts file using app.useGlobalPipes(new ValidationPipe()). 
+4. Handling database or external service errors
+For errors originating from external systems like databases, use try...catch blocks within your service layer to catch specific external errors and remap them to a suitable HttpException, preventing sensitive internal details from being exposed. An example of catching and re-throwing a database error is available in the referenced web document
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lifecycle hook method
+Lifecycle event triggering the hook method call
+onModuleInit()
+Called once the host module's dependencies have been resolved.
+onApplicationBootstrap()
+Called once all modules have been initialized, but before listening for connections.
+onModuleDestroy()*
+Called after a termination signal (e.g., SIGTERM) has been received.
+beforeApplicationShutdown()*
+Called after all onModuleDestroy() handlers have completed (Promises resolved or rejected);
+once complete (Promises resolved or rejected), all existing connections will be closed (app.close() called).
+onApplicationShutdown()*
+Called after connections close (app.close() resolves).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+With this
+DTO annotated with validation decorators will be checked before your handler runs
+Example of DTO
+Custom pipe
+@Get(':id')
+getById(@Param('id', ParseIntPipe) id: number)
+
+
+
+
+
+
+
+Flow
+middleware
+pipe
+guard
+routing 
+MIddlewareConsumer
+controller
+
