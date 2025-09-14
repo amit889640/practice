@@ -90,3 +90,33 @@ Pg are much faster than mongo
 Pg concurrent client could be more than 100
 Mongo concurrent client could be defaults to 100
 
+Transaction:- Is fundamental concept of ensuring data integrity and consistency
+    - Single atomic of work the fully succeeds or fails
+
+    ACID
+    Atomicity:- If any part of trxn fails the entire trxn is rollback
+    Consistency:- This means that any data written to the database must be valid according to all predefined rules and constraints.
+    Isolation :- trxn operate independently of each other.
+    Durability:- Once trxn committed , its changes are permanently stored in DB.
+
+    Begin transaction,
+    update employeeIncrement salary=10000 where empId=2;
+    savepoint t1
+    update employeeSalary salary=salary+10000 where empId=2;
+    savepoint t2
+
+    commit
+    rollback to savepoint t1 :- to rollback to certain point
+    release savepoint t1 :- to release till t1 represent that you are satisfied till that trxn
+
+    insert into emp () value(),VAue(),value()
+
+    Sometime table got locked when it stuck in some other trxn 
+    To check the PID
+
+    Select state,datname,pid,* from pg_stat_activity
+
+    To delete the PID and unlock the table
+    SELECT pg_terminate_backend(pid)
+    FROM pg_stat_activity
+    where datname='dbname' and pid=pid_number

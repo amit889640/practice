@@ -1,22 +1,20 @@
-function lengthOfLongestSubstring(str) {
-  let tempStrArr = [str[0]];
-  let largestStr = str[0];
-  let startPos = 0;
-  ``;
-  for (let i = 1; i < str.length; i) {
-    if (tempStrArr.includes(str[i])) {
-      if (largestStr.length < i - 1 - startPos) {
-        largestStr = str.substring(startPos, i);
-      }
-      startPos = i;
-      i = startPos + 1;
-      tempStrArr = [];
-    } else {
-      tempStrArr.push(str[i]);
-      i = i + 1;
-    }
-  }
-  return largestStr;
-}
+const express = require("express");
+const app = express();
+const route = express.Router();
 
-console.log(lengthOfLongestSubstring("pwwkew"));
+app.listen(3000, (err) => {
+  if (err) {
+  } else {
+  }
+});
+
+app.use(cookieParser);
+app.use(route);
+
+app.use((error, req, res, next) => {});
+
+route.get("user/:id", (req, res, next) => {
+  return res.send({ name: "amit", userId: 2 });
+});
+
+route.post("user", (req, res, next) => {});
