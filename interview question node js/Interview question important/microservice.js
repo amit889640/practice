@@ -41,7 +41,7 @@ when to chose microservices
 Patterns in microservices
     -Two phase commit pattern (1st-send the request to all ms and 2nd ms acknowledge if it bolong to that request)
     -Three phase commit pattern
-    -Circuit breaker pattern close->(failed->try for 10 time )->open->half open
+    -Circuit breaker pattern close->(failed->try for 10 time )->open(It open the circuit to stop the execution)->half open(check for sometime if it is working)
     -Observability pattern,
     -Composition patter,
     -Api Gateway patter,
