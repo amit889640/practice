@@ -39,10 +39,10 @@ when to chose microservices
     -policy management
 
 Patterns in microservices
-    -Two phase commit pattern (1st-send the request to all ms and 2nd ms acknowledge if it bolong to that request)
-    -Three phase commit pattern
-    -Circuit breaker pattern close->(failed->try for 10 time )->open->half open
-    -Observability pattern:-Logging, monitoring, and tracing to gain insights into system behavior and performance.
+    -Two phase commit pattern (1st: send can commit msg and request for block the necessary resource,2nd: do commit )
+    -Three phase commit pattern (1st: send can commit 2nd:- Pre-commit for block the resource 3rd:- do commit)
+    -Circuit breaker pattern close->(failed->try for 10 time )->open(It open the circuit to stop the execution)->half open(check for sometime if it is working)
+    -Observability pattern,
     -Composition patter,
     -Api Gateway patter,
     -Service discovery pattern
