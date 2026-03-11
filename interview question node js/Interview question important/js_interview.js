@@ -93,7 +93,7 @@ because + concate it thinking it is the string
 console.log(2 - '3')
 
 op
-0
+-1
 
 because - can operate only on the number so it changes the '2' to number 2 and substract
 

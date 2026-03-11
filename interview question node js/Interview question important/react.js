@@ -113,6 +113,11 @@ The useMemo Hook can be used to keep expensive, resource intensive functions fro
 const calculation = expensiveCalculation(count);  
 const calculation = useMemo(() => expensiveCalculation(count), [count]);
 
+Redux 
+Redux has 3 main prpl
+Store:- hold the state of entire application
+Action:- Event-> what happens in the comp (user click)
+Reducer-> only reducer can change the store state (dispatching the action )
 
 Redux-middleware:-  middleware functions run between dispatching an action and the moment it reaches the reducer. Redux middlewares can be used for logging, routing, asynchronous actions, etc.
 Middleware helps you with logging, error reporting, making asynchronous requests, and a whole lot more.

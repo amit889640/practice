@@ -1,0 +1,64 @@
+Nextjs 
+
+1. What is Next.js and how does it differ from traditional React applications?
+Key Points:
+• Server-Side Rendering (SSR) - Renders pages on server, improving SEO
+• Static Site Generation (SSG) - Pre-builds pages at build time for better performance
+• Automatic Code Splitting - Loads only necessary code per page
+• Built-in Routing - File-based routing system (no need for React Router)
+• API Routes - Create backend endpoints without separate server
+• Image Optimization - Built-in Image component with optimization
+
+Demerits:
+✗ Learning Curve - More complex than plain React
+✗ Server Cost - SSR requires server resources (more expensive than static hosting)
+✗ Build Time - SSG can have long build times for large sites
+✗ Less Flexible - Opinionated framework, less customization than React
+✗ Vendor Lock-in - Best experience with Vercel hosting
+
+
+2.Routing
+Next.js uses a file-based routing system where the structure of the files in the "pages" directory determines the routes of the application. Each file corresponds to a route, and dynamic routes can be created using square brackets (e.g., [id].js). 
+Benefits of file-based routing:
+• Simplicity - No need to configure routes, just create files
+• Automatic Code Splitting - Only loads code for the current route
+• Nested Routes - Easily create nested routes with folders
+• Dynamic Routes - Easily create dynamic routes with file naming conventions
+• API Routes - Create backend endpoints in the same structure
+
+
+define routes in nextjs
+In Next.js, you define routes by creating files in the "pages" directory. Each file corresponds to a route based on its name and location. For example:
+- pages/index.js → Route: /
+- pages/about.js → Route: /about
+- pages/blog/index.js → Route: /blog
+- pages/blog/[id].js → Dynamic Route: /blog/:id (e.g., /blog/123)
+You can also create nested routes by organizing files into folders. For example, placing a file in
+
+Router Handlers:- 
+
+Server action :- Server actions are functions that run on the server and can be called from the client. They allow you to perform server-side logic, such as database operations or API calls, without exposing that logic to the client. Server actions can be defined in the "actions" directory and can be called from components using the "useServerAction" hook.
+
+Advantage to use server action:
+1. Security - Keeps sensitive logic on the server, reducing attack surface
+2. Performance - Reduces client-server round trips by handling logic on the server
+3. Simplicity - Easier to manage server-side logic in one place
+4. Reusability - Server actions can be reused across different components and pages
+5. Scalability - Server actions can be optimized and scaled independently of the client
+6. Lower Latency - Reduces latency by processing logic on the server rather than waiting for client requests
+7. direct access to server resources - Server actions can directly access databases, file systems, and other server resources without needing to expose APIs to the client
+
+
+Only opt for client-side rendering when:
+1. Interactivity is the primary focus (e.g., dashboards, real-time updates)
+2. SEO is not a concern (e.g., internal tools, user-specific content)
+3. Fast initial load is required without server overhead
+4. You want to leverage client-side caching and state management
+
+
+"use server" is a directive in Next.js that indicates that the code in the file should be executed on the server side. This is typically used for server actions, which are functions that run on the server and can be called from the client. By using "use server", you can ensure that the logic within the file is executed on the server, allowing you to perform tasks such as database operations or API calls without exposing that logic to the client.
+
+Example:- 
+
+"use client" is a directive in Next.js that indicates that the code in the file should be executed on the client side. This is typically used for components that need to run in the browser, such as those that rely on browser APIs or need to manage client-side state. By using "use client", you can ensure that the logic within the file is executed on the client, allowing you to create interactive components and manage state effectively.
+

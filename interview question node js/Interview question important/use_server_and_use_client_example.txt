@@ -1,0 +1,290 @@
+═════════════════════════════════════════════════════════════════════════════════
+EXAMPLE: Using BOTH "use server" and "use client" TOGETHER
+═════════════════════════════════════════════════════════════════════════════════
+
+Project Structure:
+app/
+├── actions/
+│   └── userActions.js      ← Server-side logic
+└── components/
+    └── UserForm.js         ← Client-side component
+
+
+FILE 1: Create Server Action (app/actions/userActions.js)
+──────────────────────────────────────────────────────────
+
+'use server';
+
+import { db } from '@/lib/database';
+
+// Server action to save user to database
+export async function saveUser(formData) {
+  try {
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const age = formData.get('age');
+
+    // This database operation ONLY runs on the server (secure)
+    const user = await db.users.create({
+      name,
+      email,
+      age: parseInt(age),
+      createdAt: new Date(),
+    });
+
+    return { success: true, userId: user.id };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
+// Another server action to fetch users
+export async function fetchUsers() {
+  try {
+    const users = await db.users.findAll();
+    return { success: true, data: users };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
+
+FILE 2: Create Client Component (app/components/UserForm.js)
+──────────────────────────────────────────────────────────────
+
+'use client';
+
+import { useState, useEffect } from 'react';
+import { saveUser, fetchUsers } from '@/app/actions/userActions';
+
+export default function UserForm() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  // Load users when component mounts (client-side effect)
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  const loadUsers = async () => {
+    setLoading(true);
+    // Call server action from client
+    const result = await fetchUsers();
+    if (result.success) {
+      setUsers(result.data);
+    }
+    setLoading(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+    
+    // Call server action from client component
+    const result = await saveUser(formData);
+
+    if (result.success) {
+      setMessage('User saved successfully!');
+      e.target.reset();
+      loadUsers(); // Refresh list from server
+    } else {
+      setMessage(`Error: ${result.error}`);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div style={{ padding: '20px', maxWidth: '600px' }}>
+      <h1>User Management System</h1>
+
+      {/* Form with client-side interactivity */}
+      <form onSubmit={handleSubmit} style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px' }}>
+        <h2>Add New User</h2>
+        
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="name">Name: </label>
+          <input 
+            id="name"
+            type="text" 
+            name="name" 
+            required 
+            disabled={loading}
+            style={{ marginLeft: '10px', padding: '5px' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="email">Email: </label>
+          <input 
+            id="email"
+            type="email" 
+            name="email" 
+            required 
+            disabled={loading}
+            style={{ marginLeft: '10px', padding: '5px' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="age">Age: </label>
+          <input 
+            id="age"
+            type="number" 
+            name="age" 
+            required 
+            disabled={loading}
+            style={{ marginLeft: '10px', padding: '5px' }}
+          />
+        </div>
+
+        <button type="submit" disabled={loading} style={{ padding: '8px 15px', cursor: 'pointer' }}>
+          {loading ? 'Saving...' : 'Save User'}
+        </button>
+      </form>
+
+      {/* Status message - Client-side state management */}
+      {message && (
+        <p style={{ color: message.includes('Error') ? 'red' : 'green', fontWeight: 'bold' }}>
+          {message}
+        </p>
+      )}
+
+      {/* Display users list fetched from server */}
+      <h2>Users List (from Server)</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : users.length > 0 ? (
+        <table border="1" style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#f0f0f0' }}>
+              <th style={{ padding: '10px' }}>ID</th>
+              <th style={{ padding: '10px' }}>Name</th>
+              <th style={{ padding: '10px' }}>Email</th>
+              <th style={{ padding: '10px' }}>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td style={{ padding: '10px' }}>{user.id}</td>
+                <td style={{ padding: '10px' }}>{user.name}</td>
+                <td style={{ padding: '10px' }}>{user.email}</td>
+                <td style={{ padding: '10px' }}>{user.age}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No users found.</p>
+      )}
+    </div>
+  );
+}
+
+
+HOW IT WORKS (Flow):
+────────────────────
+1. User sees client component with form (UserForm.js)
+2. User fills form and clicks "Save User" button
+3. Client detects click event → calls handleSubmit()
+4. Client creates FormData and calls saveUser() server action
+5. Network request sent to server
+6. SERVER executes saveUser() function securely (database access hidden)
+7. Server returns { success: true, userId: 123 }
+8. Client receives response and updates state
+9. Client component re-renders with success message
+10. Client calls fetchUsers() server action to refresh list
+11. Server fetches data from database
+12. Client receives user data and updates state
+13. Table re-renders with latest users
+
+
+KEY BENEFITS:
+──────────────
+✓ SECURITY: Database passwords & API keys never exposed to client
+✓ INTERACTIVITY: React hooks (useState, useEffect) make smooth UX
+✓ PERFORMANCE: Heavy database operations run on server, not browser
+✓ SIMPLICITY: No need for separate API routes (/api/users, etc.)
+✓ TYPE SAFETY: Full-stack TypeScript support
+✓ NO EXTRA CODE: Seamless client-server communication
+
+
+COMPARISON:
+
+Old Way (Without "use server"):
+- Need separate API route: /api/users/create
+- Need to fetch: await fetch('/api/users/create', { method: 'POST' })
+- More boilerplate code
+- More files to manage
+- Slower to implement
+
+New Way (With "use server" + "use client"):
+- Direct function call: await saveUser(formData)
+- Less code, cleaner syntax
+- Faster to implement
+- Automatic serialization
+- Better DX (Developer Experience)
+
+
+REAL WORLD EXAMPLE 2: Search with Server-Side Filtering
+────────────────────────────────────────────────────────
+
+File: app/actions/searchActions.js
+'use server';
+
+export async function searchProducts(query) {
+  // This runs on server - has access to database
+  const results = await db.products.search({
+    name: { $regex: query, $options: 'i' }
+  });
+  return results;
+}
+
+File: app/components/SearchBox.js
+'use client';
+
+import { useState } from 'react';
+import { searchProducts } from '@/app/actions/searchActions';
+
+export default function SearchBox() {
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState('');
+
+  const handleSearch = async (e) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    
+    if (newQuery.length > 0) {
+      // Client calls server action - server does the search
+      const results = await searchProducts(newQuery);
+      setResults(results);
+    } else {
+      setResults([]);
+    }
+  };
+
+  return (
+    <div>
+      <input 
+        type="text"
+        placeholder="Search products..."
+        value={query}
+        onChange={handleSearch}
+      />
+      <ul>
+        {results.map(product => (
+          <li key={product.id}>{product.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+This pattern is powerful because:
+• Search happens on server (fast database queries)
+• Results rendered on client (instant UI updates)
+• Users see live search as they type
+• Database credentials stay secure
